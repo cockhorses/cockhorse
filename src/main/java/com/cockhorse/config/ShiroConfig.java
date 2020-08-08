@@ -37,12 +37,13 @@ public class ShiroConfig {
 
 
         filtermap.put("/menu/login", "anon");
-//        filtermap.put("index.html", "anon");
+        filtermap.put("/index.html", "anon");
 
 
         filtermap.put("/css/**", "anon");
         filtermap.put("/layui/**", "anon");
         filtermap.put("/js/**", "anon");
+        filtermap.put("/cockhorse/**", "anon");
         filtermap.put("/images/**", "anon");
         filtermap.put("*.png", "anon");
         filtermap.put("*jpg", "anon");
@@ -54,7 +55,7 @@ public class ShiroConfig {
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filtermap);
         //如果访问的页面未认证   跳转到登陆页面
-        shiroFilterFactoryBean.setLoginUrl("/menu/login");
+        shiroFilterFactoryBean.setLoginUrl("/index.html");
 
         return shiroFilterFactoryBean;
     }
