@@ -5,6 +5,7 @@
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <!--<link rel="stylesheet" th:href="@{/cockhorse/login/css.css}" media="all"/>-->
 </head>
 <body>
     <img alt="验证码" id="code" onclick="this.src='/login/getCode?d='+new Date()*1" src="/login/getCode" />
@@ -12,28 +13,8 @@
         <input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" style="width: 100px">
         <button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release" lay-filter="sub" lay-submit="">提交</button>
     </form>
+    <canvas id="c_n12" width="1829" height="585" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 1;"></canvas>
 </body>
 <script th:src="@{/layui/layui.js}"></script>
-<script type="text/javascript" th:inline="none">
-    layui.use([ 'jquery', 'layer', 'form', 'table'  ], function() {
-        var $ = layui.jquery;
-        var layer = layui.layer;
-        var form = layui.form;
-        var table = layui.table;
-        var laydate = layui.laydate;
-        form.on("submit(sub)",function(obj){
-            //序列化表单数据
-            var params=$("#frm").serialize();
-            $.post("/login/vrify",params,function(obj){
-                if(obj){
-                    $("#code").attr("src","/login/getCode?d="+new Date()*1);
-                    window.location.href="/main/menu";
-                }else{
-                    $("#code").attr("src","/login/getCode?d="+new Date()*1);
-                    $("input[name='code']").val("").select();
-                }
-            })
-        });
-    });
-</script>
+<script th:src="@{/cockhorse/login/js.js}"></script>
 </html>
