@@ -34,12 +34,13 @@ public class ShiroConfig {
 
         Map<String, String> filtermap = new LinkedHashMap<String, String>();
         //menu/login界面可以未认证直接访问
-
-
-        filtermap.put("/menu/login", "anon");
-        filtermap.put("/", "anon");
-
-
+        filtermap.put("/login/login", "anon");
+        filtermap.put("/login/getCode", "anon");
+        filtermap.put("/login/vrify", "anon");
+        filtermap.put("/login/toLogin", "anon");
+        //暂时可以访问
+        filtermap.put("/main/menu", "anon");
+        //未认证可以访问静态资源
         filtermap.put("/css/**", "anon");
         filtermap.put("/layui/**", "anon");
         filtermap.put("/js/**", "anon");
@@ -55,7 +56,7 @@ public class ShiroConfig {
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filtermap);
         //如果访问的页面未认证   跳转到登陆页面
-        shiroFilterFactoryBean.setLoginUrl("/");
+        shiroFilterFactoryBean.setLoginUrl("/login/index");
 
         return shiroFilterFactoryBean;
     }
