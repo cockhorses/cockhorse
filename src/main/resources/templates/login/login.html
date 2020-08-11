@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maxinmum-scale=1.0,user-scalable=0" name="viewport">
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
-    <!--<link rel="stylesheet" th:href="@{/cockhorse/login/css.css}" media="all"/>-->
+    <link rel="stylesheet" th:href="@{/cockhorse/login/css.css}" media="all"/>
 </head>
 <body>
+    <span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
     <img alt="验证码" id="code" onclick="this.src='/login/getCode?d='+new Date()*1" src="/login/getCode" />
     <form class="layui-form"  lay-filter="frm" id="frm">
         <input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" style="width: 100px">

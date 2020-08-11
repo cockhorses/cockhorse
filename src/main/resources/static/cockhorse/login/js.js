@@ -18,6 +18,9 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         })
     });
 });
+
+
+
 !function () {
     function o(w, v, i) {
         return w.getAttribute(v) || i
@@ -33,7 +36,7 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
             l: w,
             z: o(v, "zIndex", -1),
             o: o(v, "opacity", 0.9),
-            c: o(v, "color", "0,100,100"),
+            c: o(v, "color", "54,54,54"),
             n: o(v, "count", 199)
         }
     }

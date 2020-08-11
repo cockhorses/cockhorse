@@ -63,7 +63,6 @@ var iconUrl = "https://at.alicdn.com/t/font_400842_q6tk84n9ywvu0udi.css";
                 return ++m > 1e3 * o.timeout / 4 ? i(f + " is not a valid module") : void(o.status[f] ? c() : setTimeout(r, 4))
             }())
         }
-
         function c() {
             l.push(layui[f]), e.length > 1 ? y.use(e.slice(1), n, l) : "function" == typeof n && n.apply(layui, l)
         }
