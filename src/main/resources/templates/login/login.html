@@ -9,14 +9,38 @@
     <link rel="stylesheet" th:href="@{/cockhorse/login/css.css}" media="all"/>
 </head>
 <body>
-    <span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
-    <img alt="验证码" id="code" onclick="this.src='/login/getCode?d='+new Date()*1" src="/login/getCode" />
-    <form class="layui-form"  lay-filter="frm" id="frm">
-        <input type="text" name="code" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input" style="width: 100px">
-        <button type="button" class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release" lay-filter="sub" lay-submit="">提交</button>
+<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
+<div class="background-main">
+    <fieldset class="layui-elem-field layui-field-title login-fieldset">
+        <legend>欢迎登陆 - 小灰灰管理平台</legend>
+    </fieldset>
+    <form class="layui-form" lay-filter="frm" id="frm">
+        <div class="layui-form-item input-item">
+            <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input"
+                   lay-verify="required|login">
+        </div>
+        <div class="layui-form-item input-item">
+            <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input"
+                   lay-verify="required|login">
+        </div>
+        <div class="layui-form-item input-item layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input"
+                       lay-verify="required|code" maxlength="4">
+                <div class="login-code layui-inline">
+                    <img alt="验证码" id="code" onclick="this.src = '/login/getCode?d=' + new Date() * 1"
+                         src="/login/getCode"/>
+                    <span id="time">60</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-error" th:text="${msg}"></div>
+        <div class="layui-form-item input-item">
+            <button class="layui-btn btn-sub" lay-filter="login" lay-submit>登录</button>
+        </div>
     </form>
-    <canvas id="c_n12" width="1829" height="585" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 1;"></canvas>
-</body>
+</div>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/cockhorse/login/js.js}"></script>
+</body>
 </html>

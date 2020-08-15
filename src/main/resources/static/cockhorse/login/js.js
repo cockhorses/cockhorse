@@ -4,23 +4,58 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     var form = layui.form;
     var table = layui.table;
     var laydate = layui.laydate;
-    form.on("submit(sub)", function (obj) {
+    form.on("submit(login)", function (obj) {
         //序列化表单数据
         var params = $("#frm").serialize();
-        $.post("/login/vrify", params, function (obj) {
-            if (obj) {
-                $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
-                window.location.href = "/main/menu";
-            } else {
-                $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
-                $("input[name='code']").val("").select();
-            }
-        })
+        $(this).text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
+        setTimeout(function(){
+            //书写跳转方法
+        },1000);
+        return false;
     });
+
+    //自定义验证
+    form.verify({
+        login:function(obj){
+            if(obj.length>=12){
+                return "请输入小于12位的数字或字母";
+            }
+        },
+        code: function () {
+            var params = $("#frm").serialize();
+            $.post('/login/vrify',params,function(obj){
+              if(obj){
+                  $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+              }else{
+                  $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+                  $("#time").html(60);
+                  layer.msg("验证码错误");
+                  $("input[name='code']").val("").select();
+              }
+            })
+        }
+    })
+
+    //定时刷新验证码
+    setInterval(function(){
+        var time=$("#time").html();
+        if(time==0){
+            $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+            time=61;
+        }
+        $("#time").html(time-1);
+    },1000);
+
+    //错误下滑
+    var text=$(".text-error").html();
+    if(text!=null||text!=""){
+        $(".text-error").slideDown(1000);
+    }
+    //3秒后错误上滑
+    setTimeout(function(){$(".text-error").slideUp(1000)},4000);
 });
 
-
-
+//粒子特效
 !function () {
     function o(w, v, i) {
         return w.getAttribute(v) || i

@@ -3,7 +3,6 @@ package com.cockhorse.controller;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -62,6 +61,7 @@ public class LoginController {
         boolean rel = false;
         String code = (String) request.getSession().getAttribute("code");
         String input = request.getParameter("code");
+        System.out.println(code+"+"+input);
         if (code.equals(input)) {
             rel = true;
         }
