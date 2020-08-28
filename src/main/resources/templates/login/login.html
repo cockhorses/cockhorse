@@ -18,16 +18,16 @@
     </fieldset>
     <form class="layui-form" lay-filter="frm" id="frm" method="post">
         <div class="layui-form-item input-item">
-            <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input loginname"
+            <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input"
                    lay-verify="required|login">
         </div>
         <div class="layui-form-item input-item">
-            <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input loginpwd"
+            <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input"
                    lay-verify="required|login">
         </div>
         <div class="layui-form-item input-item layui-inline">
             <div class="layui-input-inline">
-                <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input logincode"
+                <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input"
                        lay-verify="required|code" maxlength="4">
                 <div class="login-code layui-inline">
                     <img alt="验证码" id="code" onclick="this.src = '../login/getCode?d=' + new Date() * 1"
@@ -38,7 +38,7 @@
         </div>
         <div class="text-error" th:text="${msg}"></div>
         <div class="layui-form-item input-item">
-            <button class="layui-btn btn-sub submit" lay-filter="login" lay-submit>登录</button>
+            <button class="layui-btn btn-sub" lay-filter="login" lay-submit>登录</button>
         </div>
     </form>
 </div>
