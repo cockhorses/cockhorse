@@ -5,9 +5,32 @@
     <meta content="width=device-width,initial-scale=1.0,maxinmum-scale=1.0,user-scalable=0" name="viewport">
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
+    <link rel="stylesheet" th:href="@{/cockhorse/main/css.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/cockhorse/live/waifu1.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/cockhorse/live/flat-ui.min.css}" media="all"/>
 </head>
 <body>
 <span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
-true
+<!--看板娘开始-->
+<div class="waifu" id="waifu">
+    <div class="waifu-tips" style="opacity: 1;"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <div class="waifu-tool">
+        <span class="fui-home"></span>
+        <span class="fui-chat"></span>
+        <span class="fui-eye"></span>
+        <span class="fui-user"></span>
+        <span class="fui-photo"></span>
+        <!--<span class="fui-info-circle"></span>-->
+        <span class="fui-cross"></span>
+    </div>
+</div>
+<!--看板娘结束-->
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/cockhorse/live/jquery.min.js}"></script>
+<script th:src="@{/cockhorse/live/waifu-tips.js}"></script>
+<script th:src="@{/cockhorse/live/live2d.min.js}"></script>
+<script th:src="@{/cockhorse/main/js.js}"></script>
 </body>
 </html>

@@ -34,12 +34,14 @@ public class ShiroConfig {
 
         Map<String, String> filtermap = new LinkedHashMap<String, String>();
         //menu/login界面可以未认证直接访问
+        //登陆验证
         filtermap.put("/login/login", "anon");
+        //获取验证码
         filtermap.put("/login/getCode", "anon");
+        //验证码验证
         filtermap.put("/login/vrify", "anon");
+        //登陆页面
         filtermap.put("/login/toLogin", "anon");
-        //暂时可以访问
-        filtermap.put("/main/menu", "anon");
         //未认证可以访问静态资源
         filtermap.put("/css/**", "anon");
         filtermap.put("/layui/**", "anon");

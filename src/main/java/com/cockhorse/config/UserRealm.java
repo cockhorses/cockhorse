@@ -1,7 +1,7 @@
 package com.cockhorse.config;
 
 import com.cockhorse.entity.Sys_user;
-import com.cockhorse.service.MenuService;
+import com.cockhorse.service.LoginService;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
-    private MenuService menuService;
+    private LoginService loginService;
 
     //认证
     @Override
@@ -24,7 +24,7 @@ public class UserRealm extends AuthorizingRealm {
         String loginname= (String) authenticationToken.getPrincipal();
         Sys_user sys_user=null;
         try {
-            sys_user=menuService.loginname(loginname);
+            sys_user=loginService.loginname(loginname);
         }catch (Exception e){
             e.printStackTrace();
         }

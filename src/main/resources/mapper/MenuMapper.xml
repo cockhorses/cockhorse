@@ -4,7 +4,4 @@
 
 <mapper namespace="com.cockhorse.mapper.MenuMapper">
 
-    <select id="loginname" resultType="Sys_user">
-        select * from sys_user where loginname=#{loginname} and available=1
-    </select>
 </mapper>

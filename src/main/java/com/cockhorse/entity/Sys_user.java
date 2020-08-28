@@ -5,6 +5,7 @@ public class Sys_user {
     int id;
     String loginname;
     String loginpwd;
+    String realname;
     String card;
     int sex;
     String address;
@@ -12,6 +13,31 @@ public class Sys_user {
     String position;
     String available;
     String salt;
+
+    @Override
+    public String toString() {
+        return "Sys_user{" +
+                "id=" + id +
+                ", loginname='" + loginname + '\'' +
+                ", loginpwd='" + loginpwd + '\'' +
+                ", realname='" + realname + '\'' +
+                ", card='" + card + '\'' +
+                ", sex=" + sex +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", position='" + position + '\'' +
+                ", available='" + available + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
 
     public int getId() {
         return id;
@@ -91,22 +117,6 @@ public class Sys_user {
 
     public void setSalt(String salt) {
         this.salt = salt;
-    }
-
-    @Override
-    public String toString() {
-        return "Sys_user{" +
-                "id=" + id +
-                ", loginname='" + loginname + '\'' +
-                ", loginpwd='" + loginpwd + '\'' +
-                ", card='" + card + '\'' +
-                ", sex=" + sex +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", position='" + position + '\'' +
-                ", available='" + available + '\'' +
-                ", salt='" + salt + '\'' +
-                '}';
     }
 
 }

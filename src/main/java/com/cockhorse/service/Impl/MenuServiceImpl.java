@@ -12,12 +12,5 @@ import javax.annotation.Resource;
 @Transactional
 public class MenuServiceImpl implements MenuService {
 
-    @Resource
-    MenuMapper menuMapper;
 
-    //查询账号密码
-    @Override
-    public Sys_user loginname(String loginname) {
-        return menuMapper.loginname(loginname);
-    }
 }

@@ -9,7 +9,9 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         var params = $("#frm").serialize();
         $(this).text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
         setTimeout(function(){
-            //书写跳转方法
+            //跳转登陆方法
+            $("#frm").attr("action","../login/login");
+            $("#frm").submit();
         },1000);
         return false;
     });
@@ -23,16 +25,19 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         },
         code: function () {
             var params = $("#frm").serialize();
-            $.post('/login/vrify',params,function(obj){
+            $.post('../login/vrify',params,function(obj){
               if(obj){
-                  $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+                  $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
               }else{
-                  $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+                  $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
                   $("#time").html(60);
-                  layer.msg("验证码错误");
                   $("input[name='code']").val("").select();
+                  return "验证码错误";
               }
             })
+            if(obj!="1234"){
+                return "验证码错误";
+            }
         }
     })
 
@@ -40,7 +45,7 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     setInterval(function(){
         var time=$("#time").html();
         if(time==0){
-            $("#code").attr("src", "/login/getCode?d=" + new Date() * 1);
+            $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
             time=61;
         }
         $("#time").html(time-1);
@@ -53,8 +58,11 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     }
     //3秒后错误上滑
     setTimeout(function(){$(".text-error").slideUp(1000)},4000);
+    //5秒后错误删除
+    setTimeout(function(){$(".text-error").html("")},5000);
 });
-
+//启动看板娘
+initModel();
 //粒子特效
 !function () {
     function o(w, v, i) {

@@ -1,8 +1,16 @@
 package com.cockhorse.controller;
 
+import com.cockhorse.entity.Sys_user;
+import com.cockhorse.service.LoginService;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,17 +25,19 @@ import java.io.ByteArrayOutputStream;
 @RequestMapping("/login")
 public class LoginController {
 
-    @RequestMapping("/index")
-    public String logins(){
-        return "login/index";
-    }
-
     //验证码工具
     @Autowired
     DefaultKaptcha defaultKaptcha;
+    @Autowired
+    LoginService loginService;
 
-    @RequestMapping("/login")
-    public String login() {
+    @RequestMapping("/index")
+    public String index(){
+        return "login/index";
+    }
+
+    @RequestMapping("/toLogin")
+    public String toLogin() {
         return "login/login";
     }
 
@@ -61,11 +71,35 @@ public class LoginController {
         boolean rel = false;
         String code = (String) request.getSession().getAttribute("code");
         String input = request.getParameter("code");
-        System.out.println(code+"+"+input);
         if (code.equals(input)) {
             rel = true;
         }
         return rel;
+    }
+
+
+    //登陆验证
+    @RequestMapping("/login")
+    public String login(Model model, HttpServletRequest request, String loginname, String loginpwd){
+        //建立subject
+        Subject subject= SecurityUtils.getSubject();
+        //封装token凭证
+        UsernamePasswordToken token=new UsernamePasswordToken(loginname,loginpwd);
+        //登陆
+        try{
+            subject.login(token);
+            Sys_user user=loginService.loginname(loginname);
+            request.getSession().setAttribute("user",user);
+            model.addAttribute("loginname",user.getRealname());
+            model.addAttribute("id",user.getId());
+            return "main/main";
+        }catch (UnknownAccountException e){
+            model.addAttribute("msg","用户不存在！");
+            return "login/login";
+        }catch (IncorrectCredentialsException e){
+            model.addAttribute("msg","密码输入错误！");
+            return "login/login";
+        }
     }
 
 }
