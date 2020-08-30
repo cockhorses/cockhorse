@@ -7,8 +7,10 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     form.on("submit(login)", function (obj) {
         //序列化表单数据
         var params = $("#frm").serialize();
+        //效验验证码
         $.post('../login/vrify',params,function(obj){
             if(obj){
+                //刷新验证码并且登陆
                 $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
                 $("#time").html("60");
                 $(".btn-sub").text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
