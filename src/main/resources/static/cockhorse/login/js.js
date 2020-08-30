@@ -7,39 +7,25 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     form.on("submit(login)", function (obj) {
         //序列化表单数据
         var params = $("#frm").serialize();
-        $(this).text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
-        setTimeout(function(){
-            //跳转登陆方法
-            $("#frm").attr("action","../login/login");
-            $("#frm").submit();
-        },1000);
+        $.post('../login/vrify',params,function(obj){
+            if(obj){
+                $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
+                $("#time").html("60");
+                $(".btn-sub").text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
+                setTimeout(function(){
+                    //跳转登陆方法
+                    $("#frm").attr("action","../login/login");
+                    $("#frm").submit();
+                },1000);
+            }else{
+                $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
+                $("#time").html("60");
+                $("#code").val("").select();
+                layer.msg("验证码错误！");
+            }
+        });
         return false;
     });
-
-    //自定义验证
-    form.verify({
-        login:function(obj){
-            if(obj.length>=12){
-                return "请输入小于12位的数字或字母";
-            }
-        },
-        code: function () {
-            var params = $("#frm").serialize();
-            $.post('../login/vrify',params,function(obj){
-              if(obj){
-                  $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
-              }else{
-                  $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
-                  $("#time").html(60);
-                  $("input[name='code']").val("").select();
-                  return "验证码错误";
-              }
-            })
-            if(obj!="1234"){
-                return "验证码错误";
-            }
-        }
-    })
 
     //定时刷新验证码
     setInterval(function(){
@@ -55,11 +41,14 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     var text=$(".text-error").html();
     if(text!=null||text!=""){
         $(".text-error").slideDown(1000);
-    }
+    };
+
     //3秒后错误上滑
     setTimeout(function(){$(".text-error").slideUp(1000)},4000);
+
     //5秒后错误删除
     setTimeout(function(){$(".text-error").html("")},5000);
+
 });
 //启动看板娘
 initModel();

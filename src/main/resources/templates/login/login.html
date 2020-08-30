@@ -19,16 +19,16 @@
     <form class="layui-form" lay-filter="frm" id="frm" method="post">
         <div class="layui-form-item input-item">
             <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input"
-                   lay-verify="required|login">
+                   lay-verify="required">
         </div>
         <div class="layui-form-item input-item">
             <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input"
-                   lay-verify="required|login">
+                   lay-verify="required">
         </div>
         <div class="layui-form-item input-item layui-inline">
             <div class="layui-input-inline">
                 <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input"
-                       lay-verify="required|code" maxlength="4">
+                       lay-verify="required" maxlength="4">
                 <div class="login-code layui-inline">
                     <img alt="验证码" id="code" onclick="this.src = '../login/getCode?d=' + new Date() * 1"
                          src="../login/getCode"/>
