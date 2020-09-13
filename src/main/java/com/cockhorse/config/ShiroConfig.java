@@ -31,9 +31,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-
         Map<String, String> filtermap = new LinkedHashMap<String, String>();
-        //menu/login界面可以未认证直接访问
         //登陆验证
         filtermap.put("/login/login", "anon");
         //获取验证码
@@ -42,6 +40,8 @@ public class ShiroConfig {
         filtermap.put("/login/vrify", "anon");
         //登陆页面
         filtermap.put("/login/toLogin", "anon");
+        //手机登陆界面
+        filtermap.put("/error/phone","anon");
         //未认证可以访问静态资源
         filtermap.put("/css/**", "anon");
         filtermap.put("/layui/**", "anon");
@@ -50,16 +50,11 @@ public class ShiroConfig {
         filtermap.put("/images/**", "anon");
         filtermap.put("*.png", "anon");
         filtermap.put("*jpg", "anon");
-
-
-
         //未认证都不允许通过
         filtermap.put("/**", "authc");
-
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filtermap);
         //如果访问的页面未认证   跳转到登陆页面
         shiroFilterFactoryBean.setLoginUrl("/login/index");
-
         return shiroFilterFactoryBean;
     }
 
