@@ -32,12 +32,12 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(HttpServletRequest request){
         return "login/index";
     }
 
     @RequestMapping("/toLogin")
-    public String toLogin() {
+    public String toLogin(HttpServletRequest request) {
         return "login/login";
     }
 

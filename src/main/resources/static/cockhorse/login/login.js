@@ -43,13 +43,11 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     var text=$(".text-error").html();
     if(text!=null||text!=""){
         $(".text-error").slideDown(1000);
+        //3秒后错误上滑
+        setTimeout(function(){$(".text-error").slideUp(1000)},4000);
+        //5秒后错误删除
+        setTimeout(function(){$(".text-error").html("")},5000);
     };
-
-    //3秒后错误上滑
-    setTimeout(function(){$(".text-error").slideUp(1000)},4000);
-
-    //5秒后错误删除
-    setTimeout(function(){$(".text-error").html("")},5000);
 
 });
 //启动看板娘

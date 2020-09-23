@@ -40,7 +40,7 @@ public class ShiroConfig {
         filtermap.put("/login/vrify", "anon");
         //登陆页面
         filtermap.put("/login/toLogin", "anon");
-        //手机登陆界面
+        //手机登陆拦截界面
         filtermap.put("/error/phone","anon");
         //未认证可以访问静态资源
         filtermap.put("/css/**", "anon");

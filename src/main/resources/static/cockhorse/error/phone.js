@@ -31,4 +31,4 @@ time1 = setInterval(function () {
     } else if (y >= winy) {
         sy = 1;
     }
-}, 1)
+}, 100)

@@ -8,7 +8,9 @@ body{
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 370px;
+    width: 380px;
     height: 80px;
     background: white;
+    text-align: center;
+    padding: 0px 0px 9px 20px;
 }
