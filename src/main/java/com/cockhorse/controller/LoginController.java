@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.Enumeration;
 
 @Controller
 @RequestMapping("/login")
@@ -32,13 +33,22 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("/index")
-    public String index(HttpServletRequest request){
+    public String index(){
         return "login/index";
     }
 
     @RequestMapping("/toLogin")
-    public String toLogin(HttpServletRequest request) {
+    public String toLogin() {
         return "login/login";
+    }
+
+    @RequestMapping("/exit")
+    public String exit(HttpServletRequest request){
+        Enumeration em = request.getSession().getAttributeNames();
+        while (em.hasMoreElements()){
+            request.getSession().removeAttribute(em.nextElement().toString());
+        }
+        return "login/index";
     }
 
     //生成验证码

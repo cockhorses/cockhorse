@@ -11,6 +11,6 @@ public class UserController {
     @RequestMapping("/info")
     public String info(Sys_user sys_user){
         System.out.println(sys_user.toString());
-        return null;
+        return "login/index";
     }
 }
