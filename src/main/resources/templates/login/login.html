@@ -31,7 +31,7 @@
                        lay-verify="required" maxlength="4">
                 <div class="login-code layui-inline">
                     <img alt="验证码" id="code" onclick="this.src = '../login/getCode?d=' + new Date() * 1"
-                         src="../login/getCode"/>
+                         th:src="@{/login/getCode}"/>
                     <span id="time">60</span>
                 </div>
             </div>

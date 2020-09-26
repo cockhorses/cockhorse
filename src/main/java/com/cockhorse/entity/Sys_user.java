@@ -13,6 +13,8 @@ public class Sys_user {
     String position;
     String available;
     String salt;
+    int pid;
+    String path;
 
     @Override
     public String toString() {
@@ -28,7 +30,25 @@ public class Sys_user {
                 ", position='" + position + '\'' +
                 ", available='" + available + '\'' +
                 ", salt='" + salt + '\'' +
+                ", pid=" + pid +
+                ", path='" + path + '\'' +
                 '}';
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public String getRealname() {

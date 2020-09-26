@@ -5,6 +5,6 @@
 <mapper namespace="com.cockhorse.mapper.LoginMapper">
 
     <select id="loginname" resultType="Sys_user">
-        select * from sys_user where loginname=#{loginname} and available=1
+        select s.id,s.loginname,s.loginpwd,s.realname,s.card,s.sex,s.address,s.phone,s.position,s.available,s.salt,p.pid,p.path from sys_user s,pictures p where loginname=#{loginname} and available=1 and s.pid=p.pid
     </select>
 </mapper>

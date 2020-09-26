@@ -1,6 +1,5 @@
 package com.cockhorse.service.Impl;
 
-import com.cockhorse.entity.Sys_user;
 import com.cockhorse.mapper.MenuMapper;
 import com.cockhorse.service.MenuService;
 import org.springframework.stereotype.Service;
@@ -12,5 +11,7 @@ import javax.annotation.Resource;
 @Transactional
 public class MenuServiceImpl implements MenuService {
 
+    @Resource
+    MenuMapper menuMapper;
 
 }

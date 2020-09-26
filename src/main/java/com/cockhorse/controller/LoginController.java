@@ -91,24 +91,30 @@ public class LoginController {
     //登陆验证
     @RequestMapping("/login")
     public String login(Model model, HttpServletRequest request, String loginname, String loginpwd){
-        //建立subject
-        Subject subject= SecurityUtils.getSubject();
-        //封装token凭证
-        UsernamePasswordToken token=new UsernamePasswordToken(loginname,loginpwd);
-        //登陆
-        try{
-            subject.login(token);
-            Sys_user user=loginService.loginname(loginname);
-            request.getSession().setAttribute("user",user);
-            model.addAttribute("loginname",user.getRealname());
-            model.addAttribute("id",user.getId());
-            return "main/main";
-        }catch (UnknownAccountException e){
-            model.addAttribute("msg","用户不存在！");
+        if(loginname==null){
+            model.addAttribute("msg","请勿直接访问登陆路径！");
             return "login/login";
-        }catch (IncorrectCredentialsException e){
-            model.addAttribute("msg","密码输入错误！");
-            return "login/login";
+        }else{
+            //建立subject
+            Subject subject= SecurityUtils.getSubject();
+            //封装token凭证
+            UsernamePasswordToken token=new UsernamePasswordToken(loginname,loginpwd);
+            //登陆
+            try{
+                subject.login(token);
+                Sys_user user=loginService.loginname(loginname);
+                request.getSession().setAttribute("user",user);
+                model.addAttribute("path",user.getPath());
+                model.addAttribute("loginname",user.getRealname());
+                model.addAttribute("id",user.getId());
+                return "main/main";
+            }catch (UnknownAccountException e){
+                model.addAttribute("msg","用户不存在！");
+                return "login/login";
+            }catch (IncorrectCredentialsException e){
+                model.addAttribute("msg","密码输入错误！");
+                return "login/login";
+            }
         }
     }
 
