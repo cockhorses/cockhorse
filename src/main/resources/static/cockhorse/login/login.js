@@ -22,7 +22,7 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
             }else{
                 $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
                 $("#time").html("60");
-                $("#code").val("").select();
+                $("input[name='code']").val("").select();
                 layer.msg("验证码错误！");
             }
         });
