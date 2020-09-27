@@ -43,9 +43,7 @@ public class ShiroConfig {
         //手机登陆拦截界面
         filtermap.put("/error/phone","anon");
         //未认证可以访问静态资源
-        filtermap.put("/css/**", "anon");
         filtermap.put("/layui/**", "anon");
-        filtermap.put("/js/**", "anon");
         filtermap.put("/cockhorse/**", "anon");
         filtermap.put("/images/**", "anon");
         filtermap.put("*.png", "anon");
