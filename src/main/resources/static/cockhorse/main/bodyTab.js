@@ -1,5 +1,4 @@
-var tabFilter, menu = [], liIndex, curNav, delMenu,
-    changeRefreshStr = window.sessionStorage.getItem("changeRefresh");
+var tabFilter, menu = [], liIndex, curNav, delMenu;
 layui.define(["element", "jquery"], function (exports) {
     var element = layui.element,
         $ = layui.$,
@@ -38,23 +37,33 @@ layui.define(["element", "jquery"], function (exports) {
                 ulHtml += '<cite>' + data[i].title + '</cite>';
                 ulHtml += '<span class="layui-nav-more"></span>';
                 ulHtml += '</a>';
+                //循环开始，循环添加dl
                 ulHtml += '<dl class="layui-nav-child">';
+                var inp='<dl class="layui-nav-child">';
                 for (var j = 0; j < data[i].children.length; j++) {
                     if (data[i].children[j].target == "_blank") {
                         ulHtml += '<dd><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
+                        inp += '<dd><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
                     } else {
                         ulHtml += '<dd><a data-url="' + data[i].children[j].href + '">';
+                        inp += '<dd><a data-url="' + data[i].children[j].href + '">';
                     }
                     if (data[i].children[j].icon != undefined && data[i].children[j].icon != '') {
                         if (data[i].children[j].icon.indexOf("icon-") != -1) {
                             ulHtml += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
+                            inp += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
                         } else {
                             ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
+                            inp += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
                         }
                     }
                     ulHtml += '<cite>' + data[i].children[j].title + '</cite></a></dd>';
+                    inp += '<cite>' + data[i].children[j].title + '</cite></a></dd>';
                 }
                 ulHtml += "</dl>";
+                inp += "</dl>";
+                alert(inp);
+                //循环结束
             } else {
                 if (data[i].target == "_blank") {
                     ulHtml += '<a data-url="' + data[i].href + '" target="' + data[i].target + '">';
