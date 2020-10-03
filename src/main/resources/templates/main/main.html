@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/cockhorse/main/main.css}" media="all"/>
 </head>
 <body class="main_body">
-<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
+<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
 <div class="layui-layout layui-layout-admin">
     <!--顶部状态栏-->
     <div class="layui-header header">
@@ -21,19 +21,28 @@
             <!-- 顶部右侧菜单 -->
             <ul class="layui-nav top_menu">
                 <li class="layui-nav-item" pc>
-                    <a href="javascript:;" class="clearCache"><i class="layui-icon" data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite><span class="layui-badge-dot"></span></a>
+                    <a href="javascript:;" class="clearCache"><i class="layui-icon"
+                                                                 data-icon="&#xe640;">&#xe640;</i><cite>清除缓存</cite><span
+                            class="layui-badge-dot"></span></a>
                 </li>
                 <li class="layui-nav-item lockcms" pc>
-                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a><span th:text="${loginpwd}" id="pwd"></span>
+                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a><span
+                        th:text="${loginpwd}" id="pwd"></span>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img th:src="@{${path}}" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName"><span th:text="${loginname}"></span></cite></a>
+                    <a href="javascript:;"><img th:src="@{${path}}" class="layui-nav-img userAvatar" width="35"
+                                                height="35"><cite class="adminName"><span th:text="${loginname}"></span></cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:;"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
-                        <dd><a href="javascript:;" class="showNotice"><i class="layui-icon">&#xe645;</i><cite>系统公告</cite></a></dd>
-                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite></a></dd>
-                        <dd><a th:href="@{/login/exit}" class="signOut"><i class="seraph icon-tuichu"></i><cite>退出账户</cite></a></dd>
+                        <dd><a href="javascript:;"><i class="seraph icon-ziliao"
+                                                      data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
+                        <dd><a href="javascript:;"><i class="seraph icon-xiugai"
+                                                      data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
+                        <dd><a href="javascript:;" class="showNotice"><i
+                                class="layui-icon">&#xe645;</i><cite>系统公告</cite></a></dd>
+                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite></a>
+                        </dd>
+                        <dd><a th:href="@{/login/exit}" class="signOut"><i
+                                class="seraph icon-tuichu"></i><cite>退出账户</cite></a></dd>
                     </dl>
                 </li>
             </ul>
@@ -48,7 +57,8 @@
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" th:data-url="@{/main/home.html}"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
+                    <a href="javascript:;" th:data-url="@{/main/home.html}"><i class="layui-icon"
+                                                                               data-icon=""></i><cite>后台首页</cite></a>
                 </li>
             </ul>
         </div>
@@ -63,8 +73,10 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i> 页面操作</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#xe669;</i> 刷新当前</a></dd>
-                        <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a></dd>
+                        <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#xe669;</i>
+                            刷新当前</a></dd>
+                        <dd><a href="javascript:;" class="closePageOther"><i class="seraph icon-prohibit"></i> 关闭其他</a>
+                        </dd>
                         <dd><a href="javascript:;" class="closePageAll"><i class="seraph icon-guanbi"></i> 关闭全部</a></dd>
                     </dl>
                 </li>
@@ -78,7 +90,7 @@
     </div>
     <!-- 底部固定区域 -->
     <div class="layui-footer footer">
-        © layui.com - 底部固定区域
+        <a href="http://beian.miit.gov.cn/" target="_blank">豫ICP备20021648号-1</a>
     </div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>

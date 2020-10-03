@@ -25,6 +25,7 @@ layui.define(["element", "jquery"], function (exports) {
             } else {
                 ulHtml += '<li class="layui-nav-item">';
             }
+            //判断是否是二级菜单
             if (data[i].children != undefined && data[i].children.length > 0) {
                 ulHtml += '<a>';
                 if (data[i].icon != undefined && data[i].icon != '') {
@@ -37,32 +38,47 @@ layui.define(["element", "jquery"], function (exports) {
                 ulHtml += '<cite>' + data[i].title + '</cite>';
                 ulHtml += '<span class="layui-nav-more"></span>';
                 ulHtml += '</a>';
-                //循环开始，循环添加dl
-                ulHtml += '<dl class="layui-nav-child">';
-                var inp='<dl class="layui-nav-child">';
+                //循环开始，循环添加dl，
+                ulHtml += '<ul class="layui-nav-child">';
                 for (var j = 0; j < data[i].children.length; j++) {
                     if (data[i].children[j].target == "_blank") {
-                        ulHtml += '<dd><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
-                        inp += '<dd><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
+                        ulHtml += '<li><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
                     } else {
-                        ulHtml += '<dd><a data-url="' + data[i].children[j].href + '">';
-                        inp += '<dd><a data-url="' + data[i].children[j].href + '">';
+                        ulHtml += '<li><a data-url="' + data[i].children[j].href + '">';
                     }
                     if (data[i].children[j].icon != undefined && data[i].children[j].icon != '') {
                         if (data[i].children[j].icon.indexOf("icon-") != -1) {
                             ulHtml += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
-                            inp += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
                         } else {
                             ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
-                            inp += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
                         }
                     }
-                    ulHtml += '<cite>' + data[i].children[j].title + '</cite></a></dd>';
-                    inp += '<cite>' + data[i].children[j].title + '</cite></a></dd>';
+                    ulHtml += '<cite>' + data[i].children[j].title + '</cite></a>';
+                    //判断是否是三级菜单
+                    if (data[i].children[j].children.length > 0) {
+                        ulHtml += '<ul class="layui-nav-child">';
+                        for (var q = 0; q < data[i].children[j].children.length; q++) {
+                            if (data[i].children[j].children[q].target == "_blank") {
+                                ulHtml += '<li><a data-url="' + data[i].children[j].children[q].href + '" target="' + data[i].children[j].children[q].target + '">';
+                            } else {
+                                ulHtml += '<li><a data-url="' + data[i].children[j].children[q].href + '">';
+                            }
+                            if (data[i].children[j].children[q].icon != undefined && data[i].children[j].children[q].icon != '') {
+                                if (data[i].children[j].children[q].icon.indexOf("icon-") != -1) {
+                                    ulHtml += '<i class="seraph ' + data[i].children[j].children[q].icon + '" data-icon="' + data[i].children[j].children[q].icon + '"></i>';
+                                } else {
+                                    ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].children[q].icon + '">' + data[i].children[j].children[q].icon + '</i>';
+                                }
+                            }
+                            ulHtml += '<cite>' + data[i].children[j].children[q].title + '</cite></a>';
+                            ulHtml += '</li>';
+                        }
+                        ulHtml += '</ul>';
+                    }
+                    //三级结束
+                    ulHtml += '</li>';
                 }
-                ulHtml += "</dl>";
-                inp += "</dl>";
-                alert(inp);
+                ulHtml += "</ul>";
                 //循环结束
             } else {
                 if (data[i].target == "_blank") {
@@ -87,7 +103,7 @@ layui.define(["element", "jquery"], function (exports) {
     Tab.prototype.render = function () {
         //显示左侧菜单
         var _this = this;
-        $(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url="page/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height() - 210);
+        $(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url=""><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height() - 210);
         element.init();  //初始化页面元素
         $(window).resize(function () {
             $(".navBar").height($(window).height() - 210);

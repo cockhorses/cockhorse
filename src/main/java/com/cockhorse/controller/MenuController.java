@@ -57,7 +57,6 @@ public class MenuController {
                 }
             }
         }
-        System.out.println(treeNodes);
         return treeNodes;
     }
 

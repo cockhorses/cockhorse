@@ -32,6 +32,8 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> filtermap = new LinkedHashMap<String, String>();
+        //默认页面
+        filtermap.put("/","anon");
         //登陆验证
         filtermap.put("/login/login", "anon");
         //获取验证码
