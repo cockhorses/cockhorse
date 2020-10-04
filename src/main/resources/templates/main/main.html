@@ -33,7 +33,7 @@
                     <a href="javascript:;"><img th:src="@{${path}}" class="layui-nav-img userAvatar" width="35"
                                                 height="35"><cite class="adminName"><span th:text="${loginname}"></span></cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"><i class="seraph icon-ziliao"
+                        <dd><a href="javascript:;" th:data-url="@{/user/info}"><i class="seraph icon-ziliao"
                                                       data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
                         <dd><a href="javascript:;"><i class="seraph icon-xiugai"
                                                       data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
@@ -83,7 +83,7 @@
             </ul>
             <div class="layui-tab-content clildFrame">
                 <div class="layui-tab-item layui-show">
-                    <iframe th:src="@{/main/home.html}"></iframe>
+                    <iframe th:src="@{/main/home}"></iframe>
                 </div>
             </div>
         </div>

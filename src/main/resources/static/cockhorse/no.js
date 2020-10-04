@@ -28,9 +28,6 @@ document.onkeydown = function () {
     }
 }
 
-//如果打开控制台，每秒刷新
-
-
 //禁止手机打开
 var system ={};
 var p = navigator.platform;
@@ -39,14 +36,7 @@ system.win = p.indexOf("Win") == 0;
 system.mac = p.indexOf("Mac") == 0;
 system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
 if(system.win||system.mac||system.xll){
-    //如果是电脑则禁止打开控制台
-    var threshold = 160;
-    window.setInterval(function () {
-        if (window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold) {
-            window.location.reload();
-        }
-    }, 1e3);
+
 }else{
     //如果是手机,跳转到
     window.location.href="../error/phone";
