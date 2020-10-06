@@ -6,7 +6,7 @@
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
-    <link rel="stylesheet" th:href="@{/cockhorse/public.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/cockhorse/user/info.css}" media="all"/>
 </head>
 <body class="childrenBody">
 <span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
@@ -29,10 +29,9 @@
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-block">
                 <input type="text" th:value="${user.getRealname()}" name="realname" placeholder="请输入真实姓名" lay-verify="required" class="layui-input realName">
-                <input type="radio">
             </div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item"  pane="">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
                 <input type="radio" name="sex" value="0" title="男" checked="">
@@ -70,9 +69,15 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" placeholder="请输入详细地址" name="address"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" th:text="${user.getPosition()}" class="layui-textarea myself"></textarea>
+                <textarea placeholder="请输入内容" th:text="${user.getPosition()}" class="layui-textarea" name="position"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -84,4 +89,5 @@
 </form>
 </body>
 <script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/cockhorse/user/info.js}"></script>
 </html>

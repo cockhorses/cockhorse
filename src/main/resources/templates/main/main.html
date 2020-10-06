@@ -6,11 +6,10 @@
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
-    <link rel="stylesheet" th:href="@{/cockhorse/index.css}" media="all"/>
     <link rel="stylesheet" th:href="@{/cockhorse/main/main.css}" media="all"/>
 </head>
 <body class="main_body">
-<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
+<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
 <div class="layui-layout layui-layout-admin">
     <!--顶部状态栏-->
     <div class="layui-header header">
@@ -38,8 +37,10 @@
                         <dd><a href="javascript:;"><i class="seraph icon-xiugai"
                                                       data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
                         <dd><a href="javascript:;" class="showNotice"><i
-                                class="layui-icon">&#xe645;</i><cite>系统公告</cite></a></dd>
-                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite></a>
+                                class="layui-icon">&#xe645;</i><cite>系统公告</cite><span
+                                class="layui-badge-dot"></span></a></dd>
+                        <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span
+                                class="layui-badge-dot"></span></a>
                         </dd>
                         <dd><a th:href="@{/login/exit}" class="signOut"><i
                                 class="seraph icon-tuichu"></i><cite>退出账户</cite></a></dd>
