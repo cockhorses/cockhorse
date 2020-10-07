@@ -8,18 +8,18 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         //序列化表单数据
         var params = $("#frm").serialize();
         //效验验证码
-        $.post('../login/vrify',params,function(obj){
-            if(obj){
+        $.post('../login/vrify', params, function (obj) {
+            if (obj) {
                 //刷新验证码并且登陆
                 $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
                 $("#time").html("60");
-                $(".btn-sub").text("登陆中...").attr("disabled","disabled").addClass("layui-disabled");
-                setTimeout(function(){
+                $(".btn-sub").text("登陆中...").attr("disabled", "disabled").addClass("layui-disabled");
+                setTimeout(function () {
                     //跳转登陆方法
-                    $("#frm").attr("action","../login/login");
+                    $("#frm").attr("action", "../login/login");
                     $("#frm").submit();
-                },1000);
-            }else{
+                }, 1000);
+            } else {
                 $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
                 $("#time").html("60");
                 $("input[name='code']").val("").select();
@@ -30,24 +30,29 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     });
 
     //定时刷新验证码
-    setInterval(function(){
-        var time=$("#time").html();
-        if(time==0){
+    setInterval(function () {
+        var time = $("#time").html();
+        if (time == 0) {
             $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
-            time=61;
+            time = 61;
         }
-        $("#time").html(time-1);
-    },1000);
+        $("#time").html(time - 1);
+    }, 1000);
 
     //错误下滑
-    var text=$(".text-error").html();
-    if(text!=null||text!=""){
+    var text = $(".text-error").html();
+    if (text != null || text != "") {
         $(".text-error").slideDown(1000);
         //3秒后错误上滑
-        setTimeout(function(){$(".text-error").slideUp(1000)},4000);
+        setTimeout(function () {
+            $(".text-error").slideUp(1000)
+        }, 4000);
         //5秒后错误删除
-        setTimeout(function(){$(".text-error").html("")},5000);
-    };
+        setTimeout(function () {
+            $(".text-error").html("")
+        }, 5000);
+    }
+    ;
 
 });
 //启动看板娘

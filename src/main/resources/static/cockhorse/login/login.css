@@ -15,10 +15,8 @@ body {
     position: absolute;
     left:50%;
     top:50%;
+    padding-top: 30px;
     transform: translate(-50%, -50%);
-}
-.login-fieldset{
-    margin-top: 20px;
 }
 .input-item{
     position: relative;
@@ -49,4 +47,7 @@ body {
     display: none;
     margin:-10px 0px 10px 10%;
     color: red;
+}
+.login-fieldset{
+    border-color: #adadad;
 }

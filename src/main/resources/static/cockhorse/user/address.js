@@ -35,10 +35,10 @@ layui.define(["form", "jquery"], function (exports) {
                 form.render();
                 form.on('select(city)', function (cityData) {
                     var value = cityData.value;
-                    var province=$("select[name=province] option:selected").text();
+                    var province = $("select[name=province] option:selected").text();
                     if (value > 0) {
                         that.areas(citys[$(this).index() - 1].childs);
-                        $("textarea[name=address]").val(province+citys[$(this).index() - 1].name);
+                        $("textarea[name=address]").val(province + citys[$(this).index() - 1].name);
                     } else {
                         $("select[name=area]").attr("disabled", "disabled");
                         $("textarea[name=address]").val(province);
