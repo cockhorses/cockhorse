@@ -13,41 +13,134 @@ body {
     border-radius: 20px;
     z-index: 99;
     position: absolute;
-    left:50%;
-    top:50%;
+    left: 50%;
+    top: 50%;
     padding-top: 30px;
     transform: translate(-50%, -50%);
 }
-.input-item{
+
+.input-item {
     position: relative;
     width: 80%;
     left: 10%;
     padding-top: 10px;
 }
-.login-code{
+
+.login-code {
     position: relative;
     margin: -50px 0px 0px 200px;
 }
-#code{
+
+#code {
     display: block;
     width: 100px;
     height: 38px;
     cursor: pointer;
 }
-#time{
+
+#time {
     position: absolute;
     font-size: 24px;
     margin: -30px 0px 0px 115px;
     color: #4E5465;
 }
-.btn-sub{
+
+.btn-sub {
     width: 100%;
 }
-.text-error{
+
+.text-error {
     display: none;
-    margin:-10px 0px 10px 10%;
+    margin-left: 10%;
     color: red;
 }
-.login-fieldset{
+
+.login-fieldset {
     border-color: #adadad;
+}
+
+.code {
+    width: 180px;
+}
+
+.layui-form-item.layui-input-focus input {
+    border-color: #ff6700 !important;
+}
+
+.layui-form-item label {
+    position: absolute;
+    color: #757575;
+    left: 10px;
+    top: 18px;
+    line-height: 20px;
+    background: transparent;
+    padding: 0 5px;
+    font-size: 16px;
+    cursor: text;
+}
+
+.layui-input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.layui-input::-moz-placeholder {
+    color: #fff;
+}
+
+.layui-input:-ms-input-placeholder {
+    color: #fff;
+}
+
+.layui-input::placeholder {
+    color: #fff;
+}
+
+.layui-input-focus .layui-input::-webkit-input-placeholder {
+    color: #757575;
+}
+
+.layui-input-focus .layui-input::-moz-placeholder {
+    color: #757575;
+}
+
+.layui-input-focus .layui-input:-ms-input-placeholder {
+    color: #757575;
+}
+
+.layui-input-focus .layui-input::placeholder {
+    color: #757575;
+}
+
+.layui-form-item.layui-input-focus label {
+    top: -0px;
+    font-size: 13px;
+    color: #ff6700;
+}
+
+.layui-form-item.layui-input-focus label, .layui-form-item.layui-input-focus input, .layui-form-item label, .layui-form-item input {
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+}
+
+.layui-form-item.layui-input-active label {
+    top: -0px;
+    font-size: 13px;
+}
+
+.layui-input-focus .layui-input::-webkit-input-placeholder {
+    transition: color 0.2s linear 0.2s;
+    -webkit-transition: color 0.2s linear 0.2s;
+}
+
+.layui-input-focus .layui-input::-moz-placeholder {
+    transition: color 0.2s linear 0.2s;
+}
+
+.layui-input-focus .layui-input:-ms-input-placeholder {
+    transition: color 0.2s linear 0.2s;
+}
+
+.layui-input-focus .layui-input::placeholder {
+    transition: color 0.2s linear 0.2s;
+    -webkit-transition: color 0.2s linear 0.2s;
 }
