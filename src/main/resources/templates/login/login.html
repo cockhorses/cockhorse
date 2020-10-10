@@ -12,24 +12,27 @@
     <link rel="stylesheet" th:href="@{/cockhorse/login/login.css}" media="all"/>
 </head>
 <body>
-<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
+<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
 <div class="background-main">
     <fieldset class="layui-elem-field layui-field-title login-fieldset">
         <legend>欢迎登陆 - 小灰灰管理平台</legend>
     </fieldset>
     <form class="layui-form" lay-filter="frm" id="frm" method="post">
         <div class="layui-form-item input-item">
-            <label>用户名</label>
+            <label><span>用户名</span></label>
+            <span class="xian">______<span>______</span></span>
             <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input"
                    lay-verify="required">
         </div>
         <div class="layui-form-item input-item">
             <label>密码</label>
+            <span class="xian">_____<span>______</span></span>
             <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input"
                    lay-verify="required">
         </div>
         <div class="layui-form-item input-item">
             <label>验证码</label>
+            <span class="xian">______<span>______</span></span>
             <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input code"
                    lay-verify="required" maxlength="4">
             <div class="login-code layui-inline">

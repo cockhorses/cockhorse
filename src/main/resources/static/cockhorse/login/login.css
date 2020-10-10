@@ -77,6 +77,12 @@ body {
     padding: 0 5px;
     font-size: 16px;
     cursor: text;
+    z-index: 2;
+}
+
+label span{
+    position: relative;
+    top: 1px;
 }
 
 .layui-input::-webkit-input-placeholder {
@@ -112,7 +118,7 @@ body {
 }
 
 .layui-form-item.layui-input-focus label {
-    top: -0px;
+    top: 0px;
     font-size: 13px;
     color: #ff6700;
 }
@@ -123,7 +129,7 @@ body {
 }
 
 .layui-form-item.layui-input-active label {
-    top: -0px;
+    top: 0px;
     font-size: 13px;
 }
 
@@ -143,4 +149,23 @@ body {
 .layui-input-focus .layui-input::placeholder {
     transition: color 0.2s linear 0.2s;
     -webkit-transition: color 0.2s linear 0.2s;
+}
+
+.xian{
+    display: none;
+}
+
+.solid {
+    display: block;
+    height: 0px;
+    color: #E7F8F6;
+    position: relative;
+    top: -14.6px;
+    left: 10px;
+}
+
+.solid span{
+    position: relative;
+    left: -45.7px;
+    top: -0.5px;
 }

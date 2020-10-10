@@ -56,16 +56,21 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     //表单输入效果
     $(".input-item").click(function(e){
         e.stopPropagation();
+        $(".xian").addClass("solid");
         $(this).addClass("layui-input-focus").find(".layui-input").focus();
     })
     $(".layui-form-item .layui-input").focus(function(){
+        $(".xian").addClass("solid");
         $(this).parent().addClass("layui-input-focus");
     })
     $(".layui-form-item .layui-input").blur(function(){
+        $(".xian").removeClass("solid");
         $(this).parent().removeClass("layui-input-focus");
         if($(this).val() != ''){
+            $(".xian").addClass("solid");
             $(this).parent().addClass("layui-input-active");
         }else{
+            $(".xian").removeClass("solid");
             $(this).parent().removeClass("layui-input-active");
         }
     })
@@ -136,10 +141,10 @@ initModel();
     }, 100)
 }();
 //如果是电脑则禁止打开控制台
-var threshold = 160;
-window.setInterval(function () {
-    if (window.outerWidth - window.innerWidth > threshold ||
-        window.outerHeight - window.innerHeight > threshold) {
-        window.location.reload();
-    }
-}, 1e3);
+// var threshold = 160;
+// window.setInterval(function () {
+//     if (window.outerWidth - window.innerWidth > threshold ||
+//         window.outerHeight - window.innerHeight > threshold) {
+//         window.location.reload();
+//     }
+// }, 1e3);
