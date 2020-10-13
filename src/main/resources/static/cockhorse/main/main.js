@@ -221,33 +221,6 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
         }, 1000);
     })
 
-    //显示当前时间
-    function timeNow() {
-        var myDate = new Date();
-        //获取当前年
-        var year = myDate.getFullYear();
-        //获取当前月
-        var month = myDate.getMonth() + 1;
-        //获取当前日
-        var date = myDate.getDate();
-        var h = myDate.getHours();       //获取当前小时数(0-23)
-        var m = myDate.getMinutes();     //获取当前分钟数(0-59)
-        var s = myDate.getSeconds();
-        var now = year + '年' + getNow(month) + '月' + getNow(date) + "日     " + getNow(h) + ':' + getNow(m) + ":" + getNow(s);
-        // 赋值给展示时间
-        $('#time').text(now);
-    }
-
-    // 获取当前时间
-    function getNow(s) {
-        return s < 10 ? '0' + s : s;
-    }
-
-    //一秒执行一次
-    setInterval(function () {
-        timeNow()
-    }, 1000);
-
     //功能设定
     $(".functionSetting").click(function () {
         layer.open({
@@ -434,10 +407,10 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     })
 });
 //如果是电脑则禁止打开控制台
-// var threshold = 160;
-// window.setInterval(function () {
-//     if (window.outerWidth - window.innerWidth > threshold ||
-//         window.outerHeight - window.innerHeight > threshold) {
-//         window.location.reload();
-//     }
-// }, 1e3);
+var threshold = 160;
+window.setInterval(function () {
+    if (window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold) {
+        window.location.reload();
+    }
+}, 1e3);

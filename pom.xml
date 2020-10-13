@@ -11,7 +11,7 @@
     <groupId>com.cockhorse</groupId>
     <artifactId>cockhorse</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>cockhorse</name>
     <description>小灰灰</description>
 

@@ -92,7 +92,7 @@ public class LoginController {
     @RequestMapping("/login")
     public String login(Model model, HttpServletRequest request, String loginname, String loginpwd){
         if(loginname==null){
-            model.addAttribute("msg","请勿直接访问登陆路径！");
+            model.addAttribute("msg","请勿直接访问路径！");
             return "login/login";
         }else{
             //建立subject

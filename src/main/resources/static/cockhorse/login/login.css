@@ -19,7 +19,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.input-item {
+.input-item,.input-item-submit{
     position: relative;
     width: 80%;
     left: 10%;
