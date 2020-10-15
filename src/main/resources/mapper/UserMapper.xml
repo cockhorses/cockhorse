@@ -6,4 +6,7 @@
     <select id="selImage" resultType="Pictures" parameterType="Sys_user">
         select * from pictures where pid=#{pid}
     </select>
+    <insert id="upload" parameterType="Pictures" useGeneratedKeys="true" keyProperty="pid">
+        insert into pictures values(null,#{path})
+    </insert>
 </mapper>

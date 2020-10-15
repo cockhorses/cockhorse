@@ -1,9 +1,9 @@
 layui.config({
-    base : "../cockhorse/user/"
+    base: "../cockhorse/user/"
 }).extend({
-    "address" : "address"
+    "address": "address"
 })
-layui.use(['form','layer','upload','laydate',"address"],function(){
+layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
     var form = layui.form;
     var $ = layui.jquery;
     var layer = parent.layer === undefined ? layui.layer : top.layer,
@@ -12,4 +12,19 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
         address = layui.address;
     //获取省市信息
     address.provinces();
+    //上传头像
+    upload.render({
+        elem: '.img-upload',
+        url: '../user/upload',
+        method: "post",
+        before: function (obj) {
+            //预读本地文件
+            obj.preview(function (index, file, result) {
+                $('#userFace').attr('src', result);
+            });
+        },
+        done: function (res) {
+            $("input[name='pid']").val(res.pid);
+        }
+    });
 })

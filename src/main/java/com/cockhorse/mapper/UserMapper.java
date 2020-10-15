@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 
     Pictures selImage(Sys_user user);
+
+    int upload(Pictures pictures);
 }

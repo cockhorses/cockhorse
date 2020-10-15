@@ -20,4 +20,9 @@ public class UserServiceImpl implements UserService {
     public Pictures selImage(Sys_user user) {
         return userMapper.selImage(user);
     }
+
+    @Override
+    public int upload(Pictures pictures) {
+        return userMapper.upload(pictures);
+    }
 }

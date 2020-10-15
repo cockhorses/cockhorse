@@ -9,13 +9,14 @@
     <link rel="stylesheet" th:href="@{/cockhorse/user/info.css}" media="all"/>
 </head>
 <body class="childrenBody">
-<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
+<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
 <form class="layui-form layui-row" method="post">
     <div class="layui-col-md3 layui-col-xs12 user_right">
+        <input type="text" disabled name="pid">
         <div class="layui-upload-list">
-            <img class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace" th:src="${user.getPath()}">
+            <img class="layui-upload-img layui-circle img-upload" id="userFace" th:src="${user.getPath()}">
         </div>
-        <button type="button" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i> 掐指一算，我要换一个头像了</button>
+        <button type="button" class="layui-btn layui-btn-primary img-upload"><i class="layui-icon">&#xe67c;</i> 掐指一算，我要换一个头像了</button>
     </div>
     <div class="layui-col-md6 layui-col-xs12">
         <div class="layui-form-item">
@@ -28,7 +29,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-block">
-                <input type="text" th:value="${user.getRealname()}" name="realname" placeholder="请输入真实姓名" lay-verify="required" class="layui-input realName">
+                <input type="text" th:value="${user.getRealname()}" name="realname" placeholder="请输入真实姓名" lay-verify="required" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item"  pane="">
@@ -41,13 +42,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机号码</label>
             <div class="layui-input-block">
-                <input type="tel" th:value="${user.getPhone()}" placeholder="请输入手机号码" lay-verify="phone" class="layui-input userPhone">
+                <input type="tel" th:value="${user.getPhone()}" placeholder="请输入手机号码" lay-verify="phone" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">身份证号</label>
             <div class="layui-input-block">
-                <input type="text" th:value="${user.getCard()}" placeholder="请输入身份证号" lay-verify="card" disabled class="layui-input card">
+                <input type="text" th:value="${user.getCard()}" placeholder="请输入身份证号" lay-verify="card" disabled class="layui-input">
             </div>
         </div>
         <div class="layui-form-item userAddress">
@@ -82,7 +83,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="changeUser">立即提交</button>
+                <button class="layui-btn" lay-submit="" lay-filter="btn-sub">立即提交</button>
             </div>
         </div>
     </div>

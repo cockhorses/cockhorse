@@ -395,10 +395,10 @@
 
 })(window);
 //如果是电脑则禁止打开控制台
-var threshold = 160;
-window.setInterval(function () {
-    if (window.outerWidth - window.innerWidth > threshold ||
-        window.outerHeight - window.innerHeight > threshold) {
-        window.location.reload();
-    }
-}, 1e3);
+// var threshold = 160;
+// window.setInterval(function () {
+//     if (window.outerWidth - window.innerWidth > threshold ||
+//         window.outerHeight - window.innerHeight > threshold) {
+//         window.location.reload();
+//     }
+// }, 1e3);
