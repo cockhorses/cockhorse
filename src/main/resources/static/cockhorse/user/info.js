@@ -27,4 +27,7 @@ layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
             $("input[name='pid']").val(res.pid);
         }
     });
+
+    //获取地址信息
+    $(".province .area .city").ck
 })

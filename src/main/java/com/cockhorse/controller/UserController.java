@@ -49,7 +49,7 @@ public class UserController {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String dateStr = simpleDateFormat.format(date);
                 //储存的路径
-                String realPath = "C:/Users/Administrator/Desktop/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
+                String realPath = "C:/Users/liao/Desktop/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
                 System.out.println(realPath);
                 //访问路径
                 path = "../" + dateStr + "/" + uuid + "." + prefix;

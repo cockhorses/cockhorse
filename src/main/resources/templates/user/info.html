@@ -9,10 +9,10 @@
     <link rel="stylesheet" th:href="@{/cockhorse/user/info.css}" media="all"/>
 </head>
 <body class="childrenBody">
-<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
+<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
 <form class="layui-form layui-row" method="post">
     <div class="layui-col-md3 layui-col-xs12 user_right">
-        <input type="text" disabled name="pid">
+        <input type="hidden" disabled name="pid" th:value="${user.getPid()}">
         <div class="layui-upload-list">
             <img class="layui-upload-img layui-circle img-upload" id="userFace" th:src="${user.getPath()}">
         </div>
@@ -59,12 +59,12 @@
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="city" lay-filter="city" disabled>
+                <select name="city" lay-filter="city" class="city">
                     <option value="">请选择市</option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="area" lay-filter="area" disabled>
+                <select name="area" lay-filter="area" class="area">
                     <option value="">请选择县/区</option>
                 </select>
             </div>
@@ -72,7 +72,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-block">
-                <textarea class="layui-textarea" placeholder="请输入详细地址" name="address"></textarea>
+                <input type="text" name="address" th:value="${user.getAddress()}">
+                <textarea class="layui-textarea" placeholder="请输入详细地址" name="dizhi"></textarea>
             </div>
         </div>
         <div class="layui-form-item">

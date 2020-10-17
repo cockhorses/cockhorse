@@ -17,10 +17,8 @@ layui.define(["form", "jquery"], function (exports) {
                         var value = proData.value;
                         if (value > 0) {
                             that.citys(data[$(this).index() - 1].childs);
-                            $("textarea[name=address]").val(data[$(this).index() - 1].name);
                         } else {
-                            $("select[name=city]").attr("disabled", "disabled");
-                            $("textarea[name=address]").val("");
+                            $("select[name=city]").html('<option value="">请选择市</option>');
                         }
                     });
                 })
@@ -31,17 +29,15 @@ layui.define(["form", "jquery"], function (exports) {
                 for (var i = 0; i < citys.length; i++) {
                     cityHtml += '<option value="' + citys[i].code + '">' + citys[i].name + '</option>';
                 }
-                $("select[name=city]").html(cityHtml).removeAttr("disabled");
+                $("select[name=city]").html(cityHtml);
                 form.render();
                 form.on('select(city)', function (cityData) {
                     var value = cityData.value;
                     var province = $("select[name=province] option:selected").text();
                     if (value > 0) {
                         that.areas(citys[$(this).index() - 1].childs);
-                        $("textarea[name=address]").val(province + citys[$(this).index() - 1].name);
                     } else {
-                        $("select[name=area]").attr("disabled", "disabled");
-                        $("textarea[name=address]").val(province);
+                        $("select[name=area]").html('<option value="">请选择县/区</option>');
                     }
                 });
             },
@@ -51,7 +47,7 @@ layui.define(["form", "jquery"], function (exports) {
                 for (var i = 0; i < areas.length; i++) {
                     areaHtml += '<option value="' + areas[i].code + '">' + areas[i].name + '</option>';
                 }
-                $("select[name=area]").html(areaHtml).removeAttr("disabled");
+                $("select[name=area]").html(areaHtml);
                 form.render();
             }
         };
