@@ -1,5 +1,6 @@
 package com.cockhorse.service.Impl;
 
+import com.cockhorse.entity.Address;
 import com.cockhorse.entity.Pictures;
 import com.cockhorse.entity.Sys_user;
 import com.cockhorse.mapper.UserMapper;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,5 +26,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int upload(Pictures pictures) {
         return userMapper.upload(pictures);
+    }
+
+    @Override
+    public List<Address> address() {
+        return userMapper.address();
     }
 }

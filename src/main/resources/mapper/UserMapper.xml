@@ -9,4 +9,7 @@
     <insert id="upload" parameterType="Pictures" useGeneratedKeys="true" keyProperty="pid">
         insert into pictures values(null,#{path})
     </insert>
+    <select id="address" resultType="Address">
+        select * from base_area;
+    </select>
 </mapper>

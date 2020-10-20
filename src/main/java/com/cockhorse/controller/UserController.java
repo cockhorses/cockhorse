@@ -1,5 +1,6 @@
 package com.cockhorse.controller;
 
+import com.cockhorse.entity.Address;
 import com.cockhorse.entity.Pictures;
 import com.cockhorse.entity.Sys_user;
 import com.cockhorse.service.UserService;
@@ -13,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -50,7 +48,6 @@ public class UserController {
                 String dateStr = simpleDateFormat.format(date);
                 //储存的路径
                 String realPath = "C:/Users/liao/Desktop/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
-                System.out.println(realPath);
                 //访问路径
                 path = "../" + dateStr + "/" + uuid + "." + prefix;
                 System.out.println(path);
@@ -69,6 +66,34 @@ public class UserController {
         }
         Map<String, Object> map = new HashMap<>();
         map.put("pid", pictures.getPid());
+        return map;
+    }
+
+    //编写三级菜单
+    @ResponseBody
+    @RequestMapping("/address")
+    public Object address(){
+        List<Address> address = userService.address();
+        List<Address> list=new ArrayList<>();
+        for(Address ads1:address){
+            if(ads1.getParentid()==0){
+                list.add(ads1);
+            }
+            for(Address ads2:address){
+                if(ads2.getParentid()==ads1.getBase_areaid()){
+                    ads1.getChildren().add(ads2);
+                }
+            }
+        }
+        return list;
+    }
+
+    //个人资料更新
+    @ResponseBody
+    @RequestMapping("/updateInfo")
+    public Object updateInfo(Sys_user sys_user){
+        Map<String,Object> map=new HashMap<>();
+        System.out.println();
         return map;
     }
 }
