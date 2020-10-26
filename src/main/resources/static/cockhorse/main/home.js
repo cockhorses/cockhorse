@@ -21,6 +21,6 @@ function getNow(s) {
 }
 
 //一秒执行一次
-setInterval(function () {
-    timeNow()
-}, 1000);
+// setInterval(function () {
+//     timeNow()
+// }, 1000);

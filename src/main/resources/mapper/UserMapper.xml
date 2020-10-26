@@ -3,13 +3,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cockhorse.mapper.UserMapper">
-    <select id="selImage" resultType="Pictures" parameterType="Sys_user">
-        select * from pictures where pid=#{pid}
-    </select>
     <insert id="upload" parameterType="Pictures" useGeneratedKeys="true" keyProperty="pid">
         insert into pictures values(null,#{path})
     </insert>
     <select id="address" resultType="Address">
         select * from base_area;
     </select>
+    <update id="updateInfo" parameterType="Sys_user">
+        update Sys_user
+        <set>
+            <if test="loginname!=null">
+                loginname=#{loginname},
+            </if>
+            <if test="loginpwd!=null">
+                loginpwd=#{loginpwd},
+            </if>
+            <if test="realname!=null">
+                realname=#{realname},
+            </if>
+            <if test="card!=null">
+                card=#{card},
+            </if>
+            <if test="sex>=0">
+                sex=#{sex},
+            </if>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="phone!=null">
+                phone=#{phone},
+            </if>
+            <if test="position!=null">
+                position=#{position},
+            </if>
+            <if test="available>0">
+                available=#{available},
+            </if>
+            <if test="salt!=null">
+                salt=#{salt},
+            </if>
+            <if test="pid>0">
+                pid=#{pid}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
 </mapper>

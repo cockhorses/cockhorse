@@ -38,48 +38,8 @@ layui.define(["element", "jquery"], function (exports) {
                 ulHtml += '<cite>' + data[i].title + '</cite>';
                 ulHtml += '<span class="layui-nav-more"></span>';
                 ulHtml += '</a>';
-                //循环开始，循环添加dl，
-                ulHtml += '<ul class="layui-nav-child">';
-                for (var j = 0; j < data[i].children.length; j++) {
-                    if (data[i].children[j].target == "_blank") {
-                        ulHtml += '<li><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
-                    } else {
-                        ulHtml += '<li><a data-url="' + data[i].children[j].href + '">';
-                    }
-                    if (data[i].children[j].icon != undefined && data[i].children[j].icon != '') {
-                        if (data[i].children[j].icon.indexOf("icon-") != -1) {
-                            ulHtml += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
-                        } else {
-                            ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
-                        }
-                    }
-                    ulHtml += '<cite>' + data[i].children[j].title + '</cite></a>';
-                    //判断是否是三级菜单
-                    if (data[i].children[j].children.length > 0) {
-                        ulHtml += '<ul class="layui-nav-child">';
-                        for (var q = 0; q < data[i].children[j].children.length; q++) {
-                            if (data[i].children[j].children[q].target == "_blank") {
-                                ulHtml += '<li><a data-url="' + data[i].children[j].children[q].href + '" target="' + data[i].children[j].children[q].target + '">';
-                            } else {
-                                ulHtml += '<li><a data-url="' + data[i].children[j].children[q].href + '">';
-                            }
-                            if (data[i].children[j].children[q].icon != undefined && data[i].children[j].children[q].icon != '') {
-                                if (data[i].children[j].children[q].icon.indexOf("icon-") != -1) {
-                                    ulHtml += '<i class="seraph ' + data[i].children[j].children[q].icon + '" data-icon="' + data[i].children[j].children[q].icon + '"></i>';
-                                } else {
-                                    ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].children[q].icon + '">' + data[i].children[j].children[q].icon + '</i>';
-                                }
-                            }
-                            ulHtml += '<cite>' + data[i].children[j].children[q].title + '</cite></a>';
-                            ulHtml += '</li>';
-                        }
-                        ulHtml += '</ul>';
-                    }
-                    //三级结束
-                    ulHtml += '</li>';
-                }
-                ulHtml += "</ul>";
-                //循环结束
+                //使用函数实现无限菜单
+                ulHtml+=menus(data[i].children);
             } else {
                 if (data[i].target == "_blank") {
                     ulHtml += '<a data-url="' + data[i].href + '" target="' + data[i].target + '">';
@@ -99,6 +59,34 @@ layui.define(["element", "jquery"], function (exports) {
         }
         return ulHtml;
     }
+
+    //多级菜单实现
+    function menus (data) {
+        var html = '<ul class="layui-nav-child">';
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].target == "_blank") {
+                html += '<li><a data-url="' + data[i].href + '" target="' + data[i].target + '">';
+            } else {
+                html += '<li><a data-url="' + data[i].href + '">';
+            }
+            if (data[i].icon != undefined && data[i].icon != '') {
+                if (data[i].icon.indexOf("icon-") != -1) {
+                    html += '<i class="seraph ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
+                } else {
+                    html += '<i class="layui-icon" data-icon="' + data[i].icon + '">' + data[i].icon + '</i>';
+                }
+            }
+            html += '<cite>' + data[i].title + '</cite></a>';
+            //判断是否还有自己菜单，如果有就在执行一遍
+            if(data[i].children.length>0){
+                html+=menus(data[i].children)
+            }
+            html += '</li>';
+        }
+        html += '</ul>';
+        return html;
+    }
+
     //获取二级菜单数据
     Tab.prototype.render = function () {
         //显示左侧菜单

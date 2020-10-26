@@ -50,7 +50,6 @@ public class UserController {
                 String realPath = "C:/Users/liao/Desktop/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
                 //访问路径
                 path = "../" + dateStr + "/" + uuid + "." + prefix;
-                System.out.println(path);
                 File files = new File(realPath);
                 if (!files.getParentFile().exists()) {
                     files.getParentFile().mkdirs();
@@ -92,8 +91,11 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/updateInfo")
     public Object updateInfo(Sys_user sys_user){
-        Map<String,Object> map=new HashMap<>();
-        System.out.println();
-        return map;
+        boolean rel=false;
+        int i = userService.updateInfo(sys_user);
+        if(i==1){
+            rel=true;
+        }
+        return rel;
     }
 }

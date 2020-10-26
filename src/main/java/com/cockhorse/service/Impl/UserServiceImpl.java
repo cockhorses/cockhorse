@@ -19,11 +19,6 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public Pictures selImage(Sys_user user) {
-        return userMapper.selImage(user);
-    }
-
-    @Override
     public int upload(Pictures pictures) {
         return userMapper.upload(pictures);
     }
@@ -31,5 +26,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Address> address() {
         return userMapper.address();
+    }
+
+    @Override
+    public int updateInfo(Sys_user sys_user) {
+        return userMapper.updateInfo(sys_user);
     }
 }

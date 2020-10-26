@@ -28,6 +28,12 @@ layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
         }
     });
 
+    //加载男女信息
+    if($("#sex").val()==1){
+        $("input[name=sex][value='1']").click();
+        form.render();
+    }
+
     //加载地址信息
     var address = $("input[name=address]").val();
     function update() {
@@ -39,7 +45,29 @@ layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
         select='dd[lay-value=' + address.substr(0, address.indexOf(",")) + ']';
         $(".area").siblings("div.layui-form-select").find('dl').find(select).click();
         $("input[name=address]").val("");
+        form.render();
         layer.close(index);
     }
-    setTimeout(update, 500);
+    setTimeout(update, 1000);
+
+    //提交信息
+    form.on("submit(btn-sub)", function (obj) {
+        //拼接地址信息
+        $("input[name=address]").val($(".area").val()+","+$("textarea[name=dizhi]").html());
+        //创建遮罩层
+        var index = layer.msg('信息提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+        //序列化表单数据
+        var params = $("#frm").serialize();
+        $.post('../user/updateInfo', params, function (obj) {
+            setTimeout(function(){
+                layer.close(index);
+                if(obj){
+                    layer.msg("提交成功");
+                }else{
+                    layer.msg("提交失败");
+                }
+            },2000);
+        });
+        return false;
+    });
 })

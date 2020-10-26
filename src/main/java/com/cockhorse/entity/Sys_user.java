@@ -11,7 +11,7 @@ public class Sys_user {
     String address;
     String phone;
     String position;
-    String available;
+    int available;
     String salt;
     int pid;
     String path;
@@ -123,11 +123,11 @@ public class Sys_user {
         this.position = position;
     }
 
-    public String getAvailable() {
+    public int getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(int available) {
         this.available = available;
     }
 

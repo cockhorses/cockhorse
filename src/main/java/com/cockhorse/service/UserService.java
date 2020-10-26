@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface UserService {
 
-    Pictures selImage(Sys_user user);
-
     int upload(Pictures pictures);
 
     List<Address> address();
+
+    int updateInfo(Sys_user sys_user);
 }
