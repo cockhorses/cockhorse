@@ -62,11 +62,13 @@ layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
             setTimeout(function(){
                 layer.close(index);
                 if(obj){
-                    layer.msg('提交成功', {icon: 1});
+                    layer.msg('提交成功', {icon: 1},function(){
+                        $.post("../user/delsurplus");
+                        parent.location.reload();
+                    });
                 }else{
                     layer.msg('提交失败', {icon: 2});
                 }
-                $.post("../user/delsurplus");
             },2000);
         });
         return false;
