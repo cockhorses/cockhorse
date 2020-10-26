@@ -32,4 +32,14 @@ public class UserServiceImpl implements UserService {
     public int updateInfo(Sys_user sys_user) {
         return userMapper.updateInfo(sys_user);
     }
+
+    @Override
+    public List<Pictures> delsurplus() {
+        return userMapper.delsurplus();
+    }
+
+    @Override
+    public int delPath(Pictures pictures) {
+        return userMapper.delPath(pictures);
+    }
 }

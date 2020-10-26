@@ -50,4 +50,10 @@
             id=#{id}
         </where>
     </update>
+    <select id="delsurplus" resultType="Pictures">
+        select * from pictures where pid not in (select p.pid from pictures p,sys_user s where p.pid=s.pid or p.pid=1)
+    </select>
+    <delete id="delPath" parameterType="Pictures">
+        delete from pictures where pid=#{pid}
+    </delete>
 </mapper>

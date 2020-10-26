@@ -1,10 +1,11 @@
 layui.config({
-    base:"../cockhorse/main/"
+    base: "../cockhorse/main/"
 }).extend({
-    "bodyTab":"bodyTab"
+    "bodyTab": "bodyTab"
 })
 var $, tab, dataStr, cacheStr = window.sessionStorage.getItem("cache"),
-    oneLoginStr = window.sessionStorage.getItem("oneLogin"),changeRefreshStr = window.sessionStorage.getItem("changeRefresh");
+    oneLoginStr = window.sessionStorage.getItem("oneLogin"),
+    changeRefreshStr = window.sessionStorage.getItem("changeRefresh");
 ;
 layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function () {
     var $ = layui.jquery;
@@ -15,12 +16,12 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     var element = layui.element;
     $ = layui.$;
 
-    tab=layui.bodyTab({
-        openTabNum:"50",//最大可打开窗口数量
-        url:"../main/getMenus"//获取菜单的地址
+    tab = layui.bodyTab({
+        openTabNum: "50",//最大可打开窗口数量
+        url: "../main/getMenus"//获取菜单的地址
     });
 
-    function getMenus(){
+    function getMenus() {
         $.getJSON(tab.tabConfig.url, function (data) {
             dataStr = data;
             //重新渲染左侧菜单
@@ -32,10 +33,10 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
 
     //页面加载时判断左侧菜单是否显示
     //通过顶部菜单获取左侧菜单
-    $(".topLevelMenus li,.mobileTopLevelMenus dd").click(function(){
-        if($(this).parents(".mobileTopLevelMenus").length != "0"){
+    $(".topLevelMenus li,.mobileTopLevelMenus dd").click(function () {
+        if ($(this).parents(".mobileTopLevelMenus").length != "0") {
             $(".topLevelMenus li").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-        }else{
+        } else {
             $(".mobileTopLevelMenus dd").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
         }
         $(".layui-layout-admin").removeClass("showMenu");
@@ -46,9 +47,9 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     })
 
     // 添加新窗口
-    $("body").on("click",".layui-nav .layui-nav-item a:not('.mobileTopLevelMenus .layui-nav-item a')",function(){
+    $("body").on("click", ".layui-nav .layui-nav-item a:not('.mobileTopLevelMenus .layui-nav-item a')", function () {
         //如果不存在子级
-        if($(this).siblings().length == 0){
+        if ($(this).siblings().length == 0) {
             addTab($(this));
             $('body').removeClass('site-mobile');  //移动端点击菜单关闭菜单层
         }
@@ -56,7 +57,7 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     })
 
     //刷新后还原打开的窗口
-    if(cacheStr == "true") {
+    if (cacheStr == "true") {
         if (window.sessionStorage.getItem("menu") != null) {
             menu = JSON.parse(window.sessionStorage.getItem("menu"));
             curmenu = window.sessionStorage.getItem("curmenu");
@@ -91,13 +92,13 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
             //渲染顶部窗口
             tab.tabMove();
         }
-    }else{
+    } else {
         window.sessionStorage.removeItem("menu");
         window.sessionStorage.removeItem("curmenu");
     }
 
     //打开新窗口
-    function addTab(_this){
+    function addTab(_this) {
         tab.tabAdd(_this);
     }
 
@@ -135,7 +136,7 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
         }
     }
 
-    if(window.sessionStorage.getItem("lockcms") != "true" && window.sessionStorage.getItem("showNotice") != "true"){
+    if (window.sessionStorage.getItem("lockcms") != "true" && window.sessionStorage.getItem("showNotice") != "true") {
         showNotice();
     }
 
@@ -219,6 +220,19 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
             layer.close(index);
             layer.msg("缓存清除成功！");
         }, 1000);
+        // var index = layer.msg('正在清除多余文件，请稍候', {icon: 16, time: false, shade: 0.8});
+        // $.post("../user/delsurplus", null, function (obj) {
+        //     setTimeout(function () {
+        //         layer.close(index);
+        //         if(obj==0){
+        //             layer.msg("没有多余文件",{icon:0})
+        //         }else if(obj==1){
+        //             layer.msg("删除成功",{icon:1})
+        //         }else if(obj==2){
+        //             layer.msg("删除失败",{icon:2})
+        //         }
+        //     }, 2000);
+        // });
     })
 
     //功能设定

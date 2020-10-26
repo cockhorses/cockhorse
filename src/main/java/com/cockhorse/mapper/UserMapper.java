@@ -15,4 +15,8 @@ public interface UserMapper {
     List<Address> address();
 
     int updateInfo(Sys_user sys_user);
+
+    List<Pictures> delsurplus();
+
+    int delPath(Pictures pictures);
 }

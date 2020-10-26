@@ -47,9 +47,9 @@ public class UserController {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String dateStr = simpleDateFormat.format(date);
                 //储存的路径
-                String realPath = "C:/Users/liao/Desktop/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
+                String realPath = "C:/cockhorse/" + dateStr + "/" + uuid + "." + prefix;
                 //访问路径
-                path = "../" + dateStr + "/" + uuid + "." + prefix;
+                path = "/" + dateStr + "/" + uuid + "." + prefix;
                 File files = new File(realPath);
                 if (!files.getParentFile().exists()) {
                     files.getParentFile().mkdirs();
@@ -71,15 +71,15 @@ public class UserController {
     //编写三级菜单
     @ResponseBody
     @RequestMapping("/address")
-    public Object address(){
+    public Object address() {
         List<Address> address = userService.address();
-        List<Address> list=new ArrayList<>();
-        for(Address ads1:address){
-            if(ads1.getParentid()==0){
+        List<Address> list = new ArrayList<>();
+        for (Address ads1 : address) {
+            if (ads1.getParentid() == 0) {
                 list.add(ads1);
             }
-            for(Address ads2:address){
-                if(ads2.getParentid()==ads1.getBase_areaid()){
+            for (Address ads2 : address) {
+                if (ads2.getParentid() == ads1.getBase_areaid()) {
                     ads1.getChildren().add(ads2);
                 }
             }
@@ -90,12 +90,58 @@ public class UserController {
     //个人资料更新
     @ResponseBody
     @RequestMapping("/updateInfo")
-    public Object updateInfo(Sys_user sys_user){
-        boolean rel=false;
+    public Object updateInfo(Sys_user sys_user) {
+        boolean rel = false;
         int i = userService.updateInfo(sys_user);
-        if(i==1){
-            rel=true;
+        if (i == 1) {
+            rel = true;
         }
         return rel;
+    }
+
+    //删除无用文件
+    @ResponseBody
+    @RequestMapping("/delsurplus")
+    public Object delsurplus() {
+        int rel = 0;
+        List<Pictures> list = userService.delsurplus();
+        if (list.size() > 0) {
+            for (Pictures pic : list) {
+                String path = "C:/cockhorse" + pic.getPath();
+                File file = new File(path);
+                if (file.exists() == true) {
+                    file.delete();
+                    userService.delPath(pic);
+                } else {
+                    userService.delPath(pic);
+                }
+            }
+            list = userService.delsurplus();
+            if (list.size() == 0) {
+                rel = 1;
+            }else{
+                rel=2;
+            }
+        }
+        File file=new File("C:/cockhorse/");
+        clear(file);
+        return rel;
+    }
+
+    public static void clear(File file) {
+        if(file.isDirectory()){
+            File[] childs=file.listFiles();
+            if(childs.length==0){
+                File parent=file.getParentFile();
+                file.delete();
+                if(parent.listFiles().length==0){
+                    parent.delete();
+                }
+            }else{
+                for (File child:childs){
+                    clear(child);
+                }
+            }
+        }
     }
 }
