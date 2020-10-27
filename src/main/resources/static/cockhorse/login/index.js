@@ -402,3 +402,10 @@ window.setInterval(function () {
         window.location.reload();
     }
 }, 1e3);
+
+function sleep(){
+    $("#index").slideDown(2000);
+    setTimeout(function(){
+        window.location.href="../login/toLogin";
+    },2000);
+}

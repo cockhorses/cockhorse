@@ -74,6 +74,7 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
             $(this).parent().removeClass("layui-input-active");
         }
     })
+    $("#index").slideUp(2000);
 });
 //启动看板娘
 initModel();

@@ -112,7 +112,7 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
             id: 'cockhorse',
             btn: ['火速围观'],
             moveType: 1,
-            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p class="layui-red">此系统只是试用版本，具体问题请联系QQ:2141256373</p></pclass></p><p>本网站的各个项目均来自客户的慷慨解囊。在此郑重提示各位：<span class="layui-red">本网站的各种项目均不负任何责任。</span></p></div>',
+            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p class="layui-red">此系统只是试用版本，具体问题请联系QQ:2141256373</p></pclass></p><p>本网站的各个项目均来自网络。在此郑重提示各位：<span class="layui-red">本网站的各种项目均不负任何责任。</span></p></div>',
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
                 btn.css('text-align', 'center');
@@ -421,10 +421,10 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     })
 });
 //如果是电脑则禁止打开控制台
-// var threshold = 160;
-// window.setInterval(function () {
-//     if (window.outerWidth - window.innerWidth > threshold ||
-//         window.outerHeight - window.innerHeight > threshold) {
-//         window.location.reload();
-//     }
-// }, 1e3);
+var threshold = 160;
+window.setInterval(function () {
+    if (window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold) {
+        window.location.reload();
+    }
+}, 1e3);
