@@ -57,7 +57,6 @@ public class ShiroConfig {
     }
 
     //用来跟加密的密码进行比对的bean
-
     @Bean(name = "hashedCredentialsMatcher")
     public HashedCredentialsMatcher getHashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
