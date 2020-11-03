@@ -7,4 +7,7 @@
     <select id="loginname" resultType="Sys_user">
         select s.id,s.loginname,s.loginpwd,s.realname,s.card,s.sex,s.address,s.phone,s.position,s.available,s.salt,p.pid,p.path from sys_user s,pictures p where loginname=#{loginname} and available=1 and s.pid=p.pid
     </select>
+    <select id="selRoleName" parameterType="Sys_user" resultType="Sys_role">
+        select r.* from sys_user u,sys_role_user ru,sys_role r where u.id=ru.uid and ru.rid=r.id and r.available=1 and u.id=#{id}
+    </select>
 </mapper>

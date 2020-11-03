@@ -30,7 +30,7 @@ public class MenuController {
     @ResponseBody
     public List<TreeNode> getMenus(HttpServletRequest request){
         Sys_user user = (Sys_user) request.getSession().getAttribute("user");
-        List<Menu> list=menuService.selAllMenus(user);
+        List<Menu> list=menuService.selMenus(user);
         //创建list集合，把list放到nodes
         List<TreeNode> nodes=new ArrayList<>();
         for(Menu menus:list){

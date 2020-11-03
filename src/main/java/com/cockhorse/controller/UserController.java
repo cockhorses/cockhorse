@@ -68,7 +68,7 @@ public class UserController {
         return map;
     }
 
-    //编写三级菜单
+    //编写省市级联
     @ResponseBody
     @RequestMapping("/address")
     public Object address() {

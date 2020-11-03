@@ -18,7 +18,12 @@ public class MenuServiceImpl implements MenuService {
     MenuMapper menuMapper;
 
     @Override
-    public List<Menu> selAllMenus(Sys_user user) {
-        return menuMapper.selAllMenus(user);
+    public List<Menu> selMenus(Sys_user user) {
+        return menuMapper.selMenus(user);
+    }
+
+    @Override
+    public List<Menu> selAllMenus() {
+        return menuMapper.selAllMenus();
     }
 }

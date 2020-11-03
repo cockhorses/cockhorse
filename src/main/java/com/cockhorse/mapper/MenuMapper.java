@@ -9,5 +9,6 @@ import java.util.List;
 @Mapper
 public interface MenuMapper {
 
-    List<Menu> selAllMenus(Sys_user user);
+    List<Menu> selMenus(Sys_user user);
+    List<Menu> selAllMenus();
 }

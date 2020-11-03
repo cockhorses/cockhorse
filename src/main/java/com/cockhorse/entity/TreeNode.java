@@ -40,7 +40,6 @@ public class TreeNode {
         this.spread = spread;
         this.target = target;
     }
-    ///////
     public TreeNode(Integer id, Integer pid, String title, Boolean spread, String checkArr) {
         this.id = id;
         this.pid = pid;

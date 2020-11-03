@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MenuService {
 
-    List<Menu> selAllMenus(Sys_user user);
+    List<Menu> selMenus(Sys_user user);
+    List<Menu> selAllMenus();
 }

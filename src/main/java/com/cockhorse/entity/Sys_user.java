@@ -1,5 +1,12 @@
 package com.cockhorse.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Sys_user {
 
     int id;
@@ -16,127 +23,5 @@ public class Sys_user {
     int pid;
     String path;
 
-    @Override
-    public String toString() {
-        return "Sys_user{" +
-                "id=" + id +
-                ", loginname='" + loginname + '\'' +
-                ", loginpwd='" + loginpwd + '\'' +
-                ", realname='" + realname + '\'' +
-                ", card='" + card + '\'' +
-                ", sex=" + sex +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", position='" + position + '\'' +
-                ", available='" + available + '\'' +
-                ", salt='" + salt + '\'' +
-                ", pid=" + pid +
-                ", path='" + path + '\'' +
-                '}';
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public int getPid() {
-        return pid;
-    }
-
-    public void setPid(int pid) {
-        this.pid = pid;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLoginname() {
-        return loginname;
-    }
-
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
-    }
-
-    public String getLoginpwd() {
-        return loginpwd;
-    }
-
-    public void setLoginpwd(String loginpwd) {
-        this.loginpwd = loginpwd;
-    }
-
-    public String getCard() {
-        return card;
-    }
-
-    public void setCard(String card) {
-        this.card = card;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public int getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(int available) {
-        this.available = available;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
 }

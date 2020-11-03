@@ -703,3 +703,7 @@ iframe {
 .hideMenu {
     margin-top: 10px;
 }
+
+#pwd{
+    display: none;
+}

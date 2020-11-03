@@ -1,75 +1,70 @@
 package com.cockhorse.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.cockhorse.service.ShiroService;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
-    @Bean(name = "userRealm")
-    public UserRealm getUserRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher hashedCredentialsMatcher) {
+
+    @Bean
+    public UserRealm getUserRealm() {
         UserRealm userRealm = new UserRealm();
-        userRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return userRealm;
     }
 
-    @Bean(name = "securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
+    @Bean
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm);
+        securityManager.setRealm(getUserRealm());
         return securityManager;
     }
 
-    @Bean(name = "shiroFilterFactoryBean")
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, String> filtermap = new LinkedHashMap<String, String>();
-        //登陆验证
-        filtermap.put("/login/login", "anon");
-        //获取验证码
-        filtermap.put("/login/getCode", "anon");
-        //验证码验证
-        filtermap.put("/login/vrify", "anon");
-        //登陆页面
-        filtermap.put("/login/toLogin", "anon");
-        //手机登陆拦截界面
-        filtermap.put("/error/phone","anon");
-        //未认证可以访问静态资源
-        filtermap.put("/layui/**", "anon");
-        filtermap.put("/cockhorse/**", "anon");
-        filtermap.put("/images/**", "anon");
-        filtermap.put("*.png", "anon");
-        filtermap.put("*jpg", "anon");
-        //未认证都不允许通过
-        filtermap.put("/**", "authc");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtermap);
-        //如果访问的页面未认证   跳转到登陆页面
-        shiroFilterFactoryBean.setLoginUrl("/login/index");
-        return shiroFilterFactoryBean;
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("MD5");//散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashIterations(2);//散列的次数;
+        return hashedCredentialsMatcher;
     }
 
-    //用来跟加密的密码进行比对的bean
-    @Bean(name = "hashedCredentialsMatcher")
-    public HashedCredentialsMatcher getHashedCredentialsMatcher() {
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        //设置比较规则
-        hashedCredentialsMatcher.setHashAlgorithmName("MD5");
-        //迭代2次
-        hashedCredentialsMatcher.setHashIterations(2);
-        return hashedCredentialsMatcher;
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(ShiroService shiroService) {
+        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        shiroFilter.setSecurityManager(securityManager());
+        Map<String, Filter> filterMap = new LinkedHashMap<>(1);
+        filterMap.put("roles", rolesAuthorizationFilter());
+        shiroFilter.setFilters(filterMap);
+        shiroFilter.setFilterChainDefinitionMap(shiroService.loadFilterChainDefinitions());
+        shiroFilter.setLoginUrl("/login/index");
+        return shiroFilter;
+    }
+
+    @Bean
+    public CustomRolesAuthorizationFilter rolesAuthorizationFilter() {
+        return new CustomRolesAuthorizationFilter();
     }
 
     //shiro 与thymeleaf的整合
     @Bean
     public ShiroDialect getShiroDialect() {
         return new ShiroDialect();
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
+        return authorizationAttributeSourceAdvisor;
     }
 }

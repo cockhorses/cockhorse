@@ -1,11 +1,13 @@
 package com.cockhorse.config;
 
+import com.cockhorse.entity.Sys_role;
 import com.cockhorse.entity.Sys_user;
 import com.cockhorse.service.LoginService;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -40,6 +42,10 @@ public class UserRealm extends AuthorizingRealm {
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        Sys_user user = (Sys_user) principalCollection.getPrimaryPrincipal();
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        Sys_role sys_role = loginService.selRoleName(user);
+        info.addRole(sys_role.getName());
+        return info;
     }
 }

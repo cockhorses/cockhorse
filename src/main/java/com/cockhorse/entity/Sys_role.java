@@ -4,17 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Address {
+public class Sys_role {
 
-    int base_areaid;
+    int id;
     String name;
-    int parentid;
-    int orders;
-    List<Address> children = new ArrayList<>();
-
+    String roledesc;
+    int available;
 }

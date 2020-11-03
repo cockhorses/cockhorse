@@ -20,12 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.util.Enumeration;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
     //验证码工具
     @Autowired
     DefaultKaptcha defaultKaptcha;
@@ -40,15 +38,6 @@ public class LoginController {
     @RequestMapping("/toLogin")
     public String toLogin() {
         return "login/login";
-    }
-
-    @RequestMapping("/exit")
-    public String exit(HttpServletRequest request){
-        Enumeration em = request.getSession().getAttributeNames();
-        while (em.hasMoreElements()){
-            request.getSession().removeAttribute(em.nextElement().toString());
-        }
-        return "login/index";
     }
 
     //生成验证码
