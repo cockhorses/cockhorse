@@ -404,6 +404,7 @@ window.setInterval(function () {
 }, 1e3);
 
 function sleep(){
+    window.sessionStorage.setItem("show",true);
     $("#index").slideDown(2000);
     setTimeout(function(){
         window.location.href="../login/toLogin";

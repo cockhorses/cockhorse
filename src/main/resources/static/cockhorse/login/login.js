@@ -74,7 +74,12 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
             $(this).parent().removeClass("layui-input-active");
         }
     })
-    $("#index").slideUp(2000);
+    if(window.sessionStorage.getItem("show")){
+        $("#index").slideUp(2000);
+        window.sessionStorage.removeItem("show");
+    }else{
+        $("#index").css("display","none");
+    }
 });
 //启动看板娘
 initModel();
