@@ -19,11 +19,11 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public Map<String, String> loadFilterChainDefinitions() {
-        List<Menu> menus = menuService.selAllMenus();
+        List<Menu> menus = menuService.selAuthority();
         Map<String, String> filtermap = new LinkedHashMap<>();
         if (menus.size() > 0) {
             for (Menu menu : menus) {
-                filtermap.put(menu.getHref(), menu.getTarget());
+                filtermap.put(menu.getHref(), menu.getAuthority());
             }
         }
         //登陆验证

@@ -16,6 +16,7 @@ public class Menu implements Serializable {
     private String title;
     private String href;
     private Boolean spread;
+    private String authority;
     private String target;
     private String icon;
     private Integer available;

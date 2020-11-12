@@ -14,11 +14,8 @@ document.oncopy = function () {
     return false;
 }
 
-//禁止ctrl，alt，F12
+//禁止alt，F12
 document.onkeydown = function () {
-    if (event.ctrlKey) {
-        return false;
-    }
     if (event.altKey) {
         return false;
     }

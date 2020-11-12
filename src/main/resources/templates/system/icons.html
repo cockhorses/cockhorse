@@ -6,11 +6,13 @@
     <title>小灰灰</title>
     <link rel="icon" th:href="@{/images/timg.jpg}">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
-    <link rel="stylesheet" th:href="@{/layui/icon.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/layui/css/icon.css}" media="all"/>
 </head>
 <body>
 <div class="site-title">
-    <fieldset><legend><a name="table">内置图标一览表（168个）</a></legend></fieldset>
+    <fieldset>
+        <legend><a name="table">内置图标一览表（168个）</a></legend>
+    </fieldset>
 </div>
 <ul class="site-doc-icon">
     <li>
@@ -1045,4 +1047,35 @@
     </li>
 </ul>
 </body>
+<script>
+    //禁止鼠标右击
+    document.oncontextmenu = function () {
+        return false;
+    }
+
+    //禁止alt，F12
+    document.onkeydown = function () {
+        if (event.altKey) {
+            return false;
+        }
+        if (event.keyCode == 123) {
+            event.preventDefault();
+            window.event.returnValue = false;
+        }
+    }
+
+    //禁止手机打开
+    var system = {};
+    var p = navigator.platform;
+    console.log(p)
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    if (system.win || system.mac || system.xll) {
+
+    } else {
+        //如果是手机,跳转到
+        window.location.href = "../error/phone";
+    }
+</script>
 </html>

@@ -10,5 +10,6 @@ import java.util.List;
 public interface MenuMapper {
 
     List<Menu> selMenus(Sys_user user);
+    List<Menu> selAuthority();
     List<Menu> selAllMenus();
 }

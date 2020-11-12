@@ -23,6 +23,11 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public List<Menu> selAuthority() {
+        return menuMapper.selAuthority();
+    }
+
+    @Override
     public List<Menu> selAllMenus() {
         return menuMapper.selAllMenus();
     }

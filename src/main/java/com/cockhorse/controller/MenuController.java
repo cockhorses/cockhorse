@@ -26,6 +26,11 @@ public class MenuController {
         return "main/main";
     }
 
+    @RequestMapping("/menus")
+    public String menus(){
+        return "system/menus";
+    }
+
     @RequestMapping("/getMenus")
     @ResponseBody
     public List<TreeNode> getMenus(HttpServletRequest request){
@@ -60,4 +65,12 @@ public class MenuController {
         return treeNodes;
     }
 
+
+    @RequestMapping("/getAllMenus")
+    @ResponseBody
+    public Object getAllMenus(){
+        List<Menu> menus = menuService.selAllMenus();
+        System.out.println(menus);
+        return null;
+    }
 }

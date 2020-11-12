@@ -41,7 +41,7 @@ layui.define(["element", "jquery"], function (exports) {
                 //使用函数实现无限菜单
                 ulHtml+=menus(data[i].children);
             } else {
-                if (data[i].target == "_blank") {
+                if (data[i].target != "") {
                     ulHtml += '<a data-url="' + data[i].href + '" target="' + data[i].target + '">';
                 } else {
                     ulHtml += '<a data-url="' + data[i].href + '">';
@@ -64,7 +64,7 @@ layui.define(["element", "jquery"], function (exports) {
     function menus (data) {
         var html = '<ul class="layui-nav-child">';
         for (var i = 0; i < data.length; i++) {
-            if (data[i].target == "_blank") {
+            if (data[i].target != "") {
                 html += '<li><a data-url="' + data[i].href + '" target="' + data[i].target + '">';
             } else {
                 html += '<li><a data-url="' + data[i].href + '">';

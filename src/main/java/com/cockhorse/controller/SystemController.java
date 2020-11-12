@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/system")
 public class SystemController {
 
-    @RequestMapping("/menus")
-    public String menus(){
-        return "system/menus";
-    }
     @RequestMapping("/users")
     public String users(){
         return "system/users";
