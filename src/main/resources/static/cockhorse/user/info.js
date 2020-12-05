@@ -73,4 +73,20 @@ layui.use(['form', 'layer', 'upload', 'laydate', "address"], function () {
         });
         return false;
     });
+
+    $("#btn-upd").click(function(){
+        var pwd=
+        layer.open({
+            type:1,
+            content:"<div>true</div>",
+            title: '修改密码',
+            area: ['300px','300px'],
+            shade:0.3,
+            btn:'提交',
+            btnAlign: 'c',
+            success: function (index) {
+            }
+        });
+        return false;
+    });
 })
