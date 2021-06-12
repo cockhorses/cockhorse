@@ -1,0 +1,7 @@
+.center{
+    position: absolute;
+    margin: 5% 0px 0px 20%;
+}
+.layui-input{
+    width: 400px;
+}

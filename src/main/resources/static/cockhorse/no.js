@@ -19,6 +19,9 @@ document.onkeydown = function () {
     if (event.altKey) {
         return false;
     }
+    if(event.ctrlKey){
+        return false;
+    }
     if (event.keyCode == 123) {
         event.preventDefault();
         window.event.returnValue = false;

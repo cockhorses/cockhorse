@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maxinmum-scale=1.0,user-scalable=0" name="viewport">
+    <title>小灰灰</title>
+    <link rel="icon" th:href="@{/images/timg.jpg}">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/cockhorse/user/updPwd.css}" media="all"/>
+</head>
+<body class="childrenBody">
+<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
+<form class="layui-form layui-row" lay-filter="frm" id="frm" method="post">
+<div class="layui-col-md6 layui-col-xs12 center">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+            <input type="text" name="loginname" lay-verify="required" disabled class="layui-input layui-disabled">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">原密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="oldpwd" lay-verify="required" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="newpwd" lay-verify="required" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">重复密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="relpwd" lay-verify="required" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="btn-sub">立即提交</button>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/cockhorse/user/updPwd.js}"></script>
+</html>

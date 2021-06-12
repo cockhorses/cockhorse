@@ -144,4 +144,16 @@ public class UserController {
             }
         }
     }
+
+    @RequestMapping("/updPwd")
+    public String updPwd(){
+        return "user/updPwd";
+    }
+
+    @RequestMapping("/updPwd01")
+    @ResponseBody
+    public Object updPwd01(String oldPwd,String newPwd,String relPwd){
+        System.out.println(oldPwd+"+"+newPwd+"+"+relPwd);
+        return "true";
+    }
 }

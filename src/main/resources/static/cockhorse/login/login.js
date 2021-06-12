@@ -51,34 +51,35 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         setTimeout(function () {
             $(".text-error").html("")
         }, 5000);
-    };
+    }
+    ;
 
     //表单输入效果
-    $(".input-item").click(function(e){
+    $(".input-item").click(function (e) {
         e.stopPropagation();
         $(".xian").addClass("solid");
         $(this).addClass("layui-input-focus").find(".layui-input").focus();
     })
-    $(".layui-form-item .layui-input").focus(function(){
+    $(".layui-form-item .layui-input").focus(function () {
         $(".xian").addClass("solid");
         $(this).parent().addClass("layui-input-focus");
     })
-    $(".layui-form-item .layui-input").blur(function(){
+    $(".layui-form-item .layui-input").blur(function () {
         $(".xian").removeClass("solid");
         $(this).parent().removeClass("layui-input-focus");
-        if($(this).val() != ''){
+        if ($(this).val() != '') {
             $(".xian").addClass("solid");
             $(this).parent().addClass("layui-input-active");
-        }else{
+        } else {
             $(".xian").removeClass("solid");
             $(this).parent().removeClass("layui-input-active");
         }
     })
-    if(window.sessionStorage.getItem("show")){
+    if (window.sessionStorage.getItem("show")) {
         $("#index").slideUp(2000);
         window.sessionStorage.removeItem("show");
-    }else{
-        $("#index").css("display","none");
+    } else {
+        $("#index").css("display", "none");
     }
 });
 //启动看板娘
