@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/error")
 public class ErrorController {
 
+    //如果是手机登录
     @RequestMapping("/phone")
     public String phone(){
         return "error/phone";

@@ -27,12 +27,11 @@
                             class="layui-badge-dot"></span></a>
                 </li>
                 <li class="layui-nav-item lockcms" pc>
-                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a><span
-                        th:text="${loginpwd}" id="pwd"></span>
+                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img th:src="@{${path}}" class="layui-nav-img userAvatar" width="35"
-                                                height="35"><cite class="adminName"><span th:text="${loginname}"></span></cite></a>
+                    <a href="javascript:;"><img th:src="@{${session.user.getPath()}}" class="layui-nav-img userAvatar" width="35"
+                                                height="35"><cite class="adminName"><span th:text="${session.user.getRealname()}"></span></cite></a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" th:data-url="@{/user/info}"><i class="seraph icon-ziliao"
                                                       data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
@@ -54,8 +53,8 @@
     <!--左侧导航-->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像"><img th:src="@{${path}}" class="userAvatar" id="userAvatar"></a>
-            <p>你好！<span class="userName" th:text="${loginname}"></span>, 欢迎登录</p>
+            <a class="img" title="我的头像"><img th:src="@{${session.user.getPath()}}" class="userAvatar" id="userAvatar"></a>
+            <p>你好！<span class="userName" th:text="${session.user.getRealname()}"></span>, 欢迎登录</p>
         </div>
         <div class="navBar layui-side-scroll" id="navBar">
             <ul class="layui-nav layui-nav-tree">
@@ -91,10 +90,10 @@
             </div>
         </div>
     </div>
-    <!-- 底部固定区域 -->
-    <!--<div class="layui-footer footer">-->
-        <!--<a href="http://beian.miit.gov.cn/" target="_blank">豫ICP备20021648号-1</a>-->
-    <!--</div>-->
+     <!--底部固定区域-->
+    <div class="layui-footer footer">
+        <a href="#" target="_blank">这是预留位置</a>
+    </div>
 </div>
 <script th:src="@{/layui/layui.js}"></script>
 <script th:src="@{/cockhorse/live/jquery.min.js}"></script>

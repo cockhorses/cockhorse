@@ -183,14 +183,17 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
             layer.msg("请输入解锁密码！");
             $(this).siblings(".admin-header-lock-input").focus();
         } else {
-            if ($(this).siblings(".admin-header-lock-input").val() == $("#pwd").html()) {
-                window.sessionStorage.setItem("lockcms", false);
-                $(this).siblings(".admin-header-lock-input").val('');
-                layer.closeAll("page");
-            } else {
-                layer.msg("密码错误，请重新输入！");
-                $(this).siblings(".admin-header-lock-input").val('').focus();
-            }
+            //把前台解锁密码输入后台进行判定
+            $.post("../user/relpwd", {pwd:$(this).siblings(".admin-header-lock-input").val()}, function (obj) {
+                if(obj){
+                    window.sessionStorage.setItem("lockcms", false);
+                    $("#unlock").siblings(".admin-header-lock-input").val('');
+                    layer.closeAll("page");
+                }else{
+                    layer.msg("密码错误，请重新输入！");
+                    $("#unlock").siblings(".admin-header-lock-input").val('').focus();
+                }
+            })
         }
     });
     $(document).on('keydown', function (event) {
@@ -239,7 +242,7 @@ layui.use(['bodyTab', 'jquery', 'layer', 'element', 'form', 'table'], function (
     $(".functionSetting").click(function () {
         layer.open({
             title: "功能设定",
-            area: ["380px", "280px"],
+            area: ["400px", "300px"],
             type: "1",
             content: '<div class="functionSrtting_box">' +
                 '<form class="layui-form">' +

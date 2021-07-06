@@ -4,6 +4,15 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
     var form = layui.form;
     var table = layui.table;
     var laydate = layui.laydate;
+    // form.verify({
+    //     inptext: function(value){
+    //         var reg = new RegExp("^([a-z]|[A-Z]|\\d){6,24}$");
+    //         if(!reg.test(value))
+    //         {
+    //             return '提示：请输入6位以上数字或字母。';
+    //         }
+    //     }
+    // });
     form.on("submit(login)", function (obj) {
         //序列化表单数据
         var params = $("#frm").serialize();
@@ -29,12 +38,17 @@ layui.use(['jquery', 'layer', 'form', 'table'], function () {
         return false;
     });
 
+    $("#code").bind('click',function(){
+        this.src = '../login/getCode?d=' + new Date() * 1;
+        $("#time").text(30);
+    })
+
     //定时刷新验证码
     setInterval(function () {
         var time = $("#time").html();
         if (time == 0) {
             $("#code").attr("src", "../login/getCode?d=" + new Date() * 1);
-            time = 61;
+            time = 31;
         }
         $("#time").html(time - 1);
     }, 1000);

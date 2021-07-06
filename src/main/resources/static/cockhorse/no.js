@@ -19,7 +19,7 @@ document.onkeydown = function () {
     if (event.altKey) {
         return false;
     }
-    if(event.ctrlKey){
+    if (event.ctrlKey) {
         return false;
     }
     if (event.keyCode == 123) {
@@ -29,15 +29,14 @@ document.onkeydown = function () {
 }
 
 //禁止手机打开
-var system ={};
+var system = {};
 var p = navigator.platform;
 console.log(p)
 system.win = p.indexOf("Win") == 0;
 system.mac = p.indexOf("Mac") == 0;
 system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-if(system.win||system.mac||system.xll){
-
-}else{
+if (system.win || system.mac || system.xll) {
+} else {
     //如果是手机,跳转到
-    window.location.href="../error/phone";
+    window.location.href = "../error/phone";
 }

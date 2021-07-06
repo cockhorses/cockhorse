@@ -35,7 +35,6 @@ public class ShiroConfig {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         hashedCredentialsMatcher.setHashAlgorithmName("MD5");//散列算法:这里使用MD5算法;
         hashedCredentialsMatcher.setHashIterations(1024);//散列的次数;
-//        SimpleHash md5=new SimpleHash("MD5","542633","4f3a20",1024);
         return hashedCredentialsMatcher;
     }
 

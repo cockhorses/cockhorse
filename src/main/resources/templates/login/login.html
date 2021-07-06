@@ -23,13 +23,13 @@
             <label><span>用户名</span></label>
             <span class="xian">______<span>______</span></span>
             <input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input"
-                   lay-verify="required">
+                   lay-verify="required|inptext">
         </div>
         <div class="layui-form-item input-item">
             <label>密码</label>
             <span class="xian">_____<span>______</span></span>
             <input type="password" placeholder="请输入密码" autocomplete="off" name="loginpwd" class="layui-input"
-                   lay-verify="required">
+                   lay-verify="required|inptext">
         </div>
         <div class="layui-form-item input-item">
             <label>验证码</label>
@@ -37,9 +37,8 @@
             <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" class="layui-input code"
                    lay-verify="required" maxlength="4">
             <div class="login-code layui-inline">
-                <img alt="验证码" id="code" onclick="this.src = '../login/getCode?d=' + new Date() * 1"
-                     th:src="@{/login/getCode}"/>
-                <span id="time">60</span>
+                <img alt="验证码" id="code" th:src="@{/login/getCode}"/>
+                <span id="time">30</span>
             </div>
         </div>
         <div class="text-error" th:text="${msg}"></div>

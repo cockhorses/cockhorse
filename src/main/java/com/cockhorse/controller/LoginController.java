@@ -93,10 +93,6 @@ public class LoginController {
                 subject.login(token);
                 Sys_user user=loginService.loginname(loginname);
                 request.getSession().setAttribute("user",user);
-                model.addAttribute("loginpwd",loginpwd);
-                model.addAttribute("path",user.getPath());
-                model.addAttribute("loginname",user.getRealname());
-                model.addAttribute("id",user.getId());
                 return "main/main";
             }catch (UnknownAccountException e){
                 model.addAttribute("msg","用户不存在！");

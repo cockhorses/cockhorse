@@ -525,12 +525,12 @@ iframe {
 }
 
 .functionSrtting_box .layui-form-label {
-    width: 81px;
+    width: 100px;
 }
 
 .functionSrtting_box .layui-word-aux {
     position: absolute;
-    left: 60px;
+    left: 80px;
     top: 9px;
     font-size: 12px;
 }
@@ -702,8 +702,4 @@ iframe {
 
 .hideMenu {
     margin-top: 10px;
-}
-
-#pwd{
-    display: none;
 }

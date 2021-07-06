@@ -1,5 +1,6 @@
 package com.cockhorse.controller;
 
+import com.cockhorse.config.UserUtil;
 import com.cockhorse.entity.Address;
 import com.cockhorse.entity.Pictures;
 import com.cockhorse.entity.Sys_user;
@@ -30,6 +31,7 @@ public class UserController {
         return "user/info";
     }
 
+    //上传图片
     @ResponseBody
     @RequestMapping("/upload")
     public Map upload(MultipartFile file, HttpServletRequest request) {
@@ -128,6 +130,7 @@ public class UserController {
         return rel;
     }
 
+    //清除空文件夹
     public static void clear(File file) {
         if(file.isDirectory()){
             File[] childs=file.listFiles();
@@ -145,15 +148,46 @@ public class UserController {
         }
     }
 
+    //跳转修改密码界面
     @RequestMapping("/updPwd")
     public String updPwd(){
         return "user/updPwd";
     }
 
-    @RequestMapping("/updPwd01")
+    //确认输入的密码和数据库是否一致
+    @RequestMapping("/relpwd")
     @ResponseBody
-    public Object updPwd01(String oldPwd,String newPwd,String relPwd){
-        System.out.println(oldPwd+"+"+newPwd+"+"+relPwd);
-        return "true";
+    public Object relpwd(HttpServletRequest request,String pwd){
+        Boolean rel=false;
+        Sys_user user = (Sys_user)request.getSession().getAttribute("user");
+        String md5pwd = UserUtil.getPwd(pwd, user.getSalt());
+        if(user.getLoginpwd().equals(md5pwd)){
+            rel=true;
+        }
+        return rel;
+    }
+
+    //修改密码
+    @RequestMapping("/relupdpwd")
+    @ResponseBody
+    public Object relupdpwd(HttpServletRequest request,String loginname,String newpwd,String oldpwd){
+        //因为用户名唯一，这里我们用用户名做为查询条件
+        //首先确认原密码正确
+        Boolean rel = (Boolean) relpwd(request, oldpwd);
+        int obj=0;
+        //这里判定2为原密码不正确
+        if(rel==true){
+            Sys_user user = (Sys_user)request.getSession().getAttribute("user");
+            String salt = UserUtil.getSalt(6);
+            String pwd = UserUtil.getPwd(newpwd, salt);
+            Sys_user newUser=new Sys_user();
+            newUser.setId(user.getId());
+            newUser.setSalt(salt);
+            newUser.setLoginpwd(pwd);
+            obj = userService.updateInfo(newUser);
+        }else{
+            obj=2;
+        }
+        return obj;
     }
 }

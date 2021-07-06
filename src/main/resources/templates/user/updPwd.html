@@ -9,31 +9,31 @@
     <link rel="stylesheet" th:href="@{/cockhorse/user/updPwd.css}" media="all"/>
 </head>
 <body class="childrenBody">
-<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>
+<!--<span><span><span><script th:src="@{/cockhorse/no.js}"></script></span></span></span>-->
 <form class="layui-form layui-row" lay-filter="frm" id="frm" method="post">
 <div class="layui-col-md6 layui-col-xs12 center">
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="loginname" lay-verify="required" disabled class="layui-input layui-disabled">
+            <input type="text" name="loginname" th:value="${session.user.getLoginname()}" lay-verify="required" disabled class="layui-input layui-disabled">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">原密码</label>
         <div class="layui-input-block">
-            <input type="text" name="oldpwd" lay-verify="required" class="layui-input">
+            <input type="password" name="oldpwd" lay-verify="required|inptext" class="layui-input" maxlength="24">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">新密码</label>
         <div class="layui-input-block">
-            <input type="text" name="newpwd" lay-verify="required" class="layui-input">
+            <input type="password" name="newpwd" lay-verify="required|inptext" class="layui-input" maxlength=24>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">重复密码</label>
         <div class="layui-input-block">
-            <input type="text" name="relpwd" lay-verify="required" class="layui-input">
+            <input type="password" name="relpwd" lay-verify="required|inptext" class="layui-input" maxlength="24">
         </div>
     </div>
     <div class="layui-form-item">
